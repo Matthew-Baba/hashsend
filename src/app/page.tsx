@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image"
-import NavBar from "@/components/NavBar";
 import { PlusCircleIcon } from "lucide-react";
 import { useAccount } from "wagmi";
+import Footer from "@/components/Footer";
+import Link from "next/link";
+import Lottie from "lottie-react";
+import CoinSpin from '@/coin-spin.json'
 
 export default function HashSend() {
-  const { isDisconnected } = useAccount()
+  const { isConnected, isDisconnected } = useAccount()
 
   return (
     <main className="">
@@ -19,8 +22,6 @@ export default function HashSend() {
           backgroundPosition: 'center'
         }}
       >
-        <NavBar />
-
         <div className="grid grid-cols-1 sm:grid-cols-9 app-width py-12">
           <div className="sm:col-span-3 flex flex-col justify-center">
             <div className="space-y-8">
@@ -42,12 +43,14 @@ export default function HashSend() {
                   </button>
                 )}
 
-                <button className="btn hs-secondary">Claim Token</button>
+                {isConnected && (
+                  <Link href="/dashboard" className="btn hs-secondary"> Get Started </Link>
+                )}
               </div>
             </div>
 
             <Image
-              src="img/penguin.svg"
+              src="img/penguin.png"
               alt="Cartoon penguin holding cryptocurrency coins"
               width={450}
               height={450}
@@ -64,13 +67,9 @@ export default function HashSend() {
               className="place-self-end"
             />
 
-            <Image
-              src="img/hero.svg"
-              alt="Cartoon penguin holding cryptocurrency coins"
-              width={300}
-              height={300}
-              className="place-self-center"
-            />
+            <div className="">
+              <Lottie animationData={CoinSpin} className="h-60" />
+            </div>
           </div>
         </div>
       </section>
@@ -120,7 +119,7 @@ export default function HashSend() {
 
               <div className="absolute -right-1 top-full sm:top-3/5 transform -translate-y-1/2">
                 <Image
-                  src="img/coin.svg"
+                  src="img/coin.png"
                   alt="3D HashSend logo"
                   width={400}
                   height={400}
@@ -131,7 +130,7 @@ export default function HashSend() {
           </div>
         </div>
 
-        <div className="app-width py-12">
+        <div className="app-width py-24">
           <h2 className="text-2xl font-bold text-yellow-500 text-center mb-16">How It Works Section</h2>
 
           {/* Divider */}
@@ -163,6 +162,8 @@ export default function HashSend() {
           />
         </div>
       </section>
+
+      <Footer />
     </main>
   )
 }
