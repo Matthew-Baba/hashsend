@@ -1,8 +1,20 @@
 import { ConnectKitButton } from 'connectkit'
+import { PlusCircleIcon } from 'lucide-react'
 
-const WalletButton = () => {
+interface WalletButtonProps {
+  customClass?: string;
+}
+
+const WalletButton = ({ customClass }: WalletButtonProps) => {
   return (
-    <ConnectKitButton />
+    <ConnectKitButton.Custom>
+      {({ isConnected, show, truncatedAddress }) => (
+        <button onClick={show} className={`btn hs-primary flex items-center gap-2 ${customClass}`}>
+          <PlusCircleIcon size={18} className={`${isConnected && 'hidden'}`} />
+          {isConnected ? truncatedAddress : "Connect wallet"}
+        </button>
+      )}
+    </ConnectKitButton.Custom>
   )
 }
 
