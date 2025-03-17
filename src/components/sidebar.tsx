@@ -74,7 +74,7 @@ export default function Sidebar() {
 
       {/* Desktop */}
       <div className="sm:p-4 hidden sm:grid min-h-screen">
-        <div className="w-[260px] hidden sm:flex rounded-md bg-gradient-to-br from-[#29313C] to-[#29313C]/10 border-r border-[#1e2d47] flex-col pb-32">
+        <div className="w-[260px] hidden sm:flex rounded-md hs-gradient-br border-r border-[#1e2d47] flex-col pb-32">
           <div className="flex-1 py-4">
             <nav className="space-y-1">
               {navItems.map((item) => {

@@ -41,4 +41,12 @@ body {
   .hs-secondary {
     @apply bg-[#1a1f2e] text-white border border-gray-600 hover:bg-gray-700/30;
   }
+
+  .hs-gradient-br {
+    @apply bg-gradient-to-br from-[#29313C] to-[#29313C]/10;
+  }
+
+  .hs-green-text {
+    @apply text-[#47A663];
+  }
 }

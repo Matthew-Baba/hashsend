@@ -4,7 +4,7 @@ import WalletButton from "./WalletButton";
 export default function ConnectWalletCard() {
   return (
     <div className="">
-      <div className="bg-gradient-to-br from-[#29313C] to-[#29313C]/10 border border-[#3A4358] rounded h-40 relative">
+      <div className="hs-gradient-br border border-[#3A4358] rounded h-40 relative">
         <Image
           src="/img/revenue-bro.svg"
           alt="Connected Wallet"

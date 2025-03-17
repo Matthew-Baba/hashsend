@@ -75,7 +75,7 @@ export default function HashSend() {
       </section>
 
       <section className="min-h-screen">
-        <div className="bg-gradient-to-br from-[#29313C] to-[#29313C]/10 py-12 relative overflow-hidden">
+        <div className="hs-gradient-br py-12 relative overflow-hidden">
           <div className="app-width py-12">
             <h1 className="text-3xl font-bold mb-12">About HashSend</h1>
 
