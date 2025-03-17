@@ -12,7 +12,7 @@ export default function HashSend() {
   const { isConnected, isDisconnected } = useAccount()
 
   return (
-    <main className="">
+    <main className="overflow-y-auto h-full pb-32">
       <section
         className="min-h-screen"
         style={{
@@ -67,7 +67,7 @@ export default function HashSend() {
               className="place-self-end"
             />
 
-            <div className="">
+            <div className="opacity-30">
               <Lottie animationData={CoinSpin} className="h-60" />
             </div>
           </div>
