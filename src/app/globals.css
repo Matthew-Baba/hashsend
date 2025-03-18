@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-yellow-50: #fffdeb;
+  --color-yellow-100: #fef7c7;
+  --color-yellow-200: #fdef8a;
+  --color-yellow-300: #fde14c;
+  --color-yellow-400: #fcd434;
+  --color-yellow-500: #f6b10a;
+  --color-yellow-600: #da8805;
+  --color-yellow-700: #b56108;
+  --color-yellow-800: #924a0e;
+  --color-yellow-900: #783d0f;
+  --color-yellow-950: #451f03;
+}
+
 :root {
   --background: #1F2630;
   --foreground: #D1D5DB;
@@ -35,7 +49,7 @@ body {
   }
 
   .hs-primary {
-    @apply bg-yellow-500 text-[#1a1f2e];
+    @apply bg-gradient-to-br from-yellow-400 to-[#FFB800] text-[#1a1f2e];
   }
 
   .hs-secondary {
@@ -48,5 +62,9 @@ body {
 
   .hs-green-text {
     @apply text-[#47A663];
+  }
+
+  .input-box {
+    @apply w-full px-4 py-3 rounded bg-[#1e2330] border border-gray-700 text-white outline-none focus:border-gray-400
   }
 }
