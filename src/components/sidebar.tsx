@@ -75,7 +75,7 @@ export default function Sidebar() {
       {/* Desktop */}
       <div className="sm:p-4 hidden sm:grid min-h-screen">
         <div className="w-[260px] hidden sm:flex rounded-md hs-gradient-br border-r border-[#1e2d47] flex-col pb-32">
-          <div className="flex-1 py-4">
+          <div className="flex-1 py-4 space-y-8">
             <nav className="space-y-1">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
@@ -104,6 +104,10 @@ export default function Sidebar() {
                 
               })}
             </nav>
+
+            <div className="place-self-center">
+              <button className="btn hs-primary px-20 py-3.5">Send</button>
+            </div>
           </div>
           
           <div className="p-4">
