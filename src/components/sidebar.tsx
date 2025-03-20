@@ -1,35 +1,17 @@
 "use client";
 
-import { useState } from "react"
 import { FileText, Upload } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ConnectedWalletCard from "./connected-wallet-card";
 import {Button} from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { ChevronDown } from "lucide-react"
-import { Switch } from "@/components/ui/switch"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import TransferModal from "./TransferModal";
 
 
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [amount, setAmount] = useState("0.0000027124")
-  const [walletAddress, setWalletAddress] = useState("")
-  const [encryptTransaction, setEncryptTransaction] = useState(false)
-  
 
   const navItems = [
     {
@@ -126,67 +108,7 @@ export default function Sidebar() {
               })}
             </nav>
 
-            <Dialog>
-              <DialogTrigger className="w-full place-self-center">
-                <label className="btn hs-primary px-20 py-3.5">Send</label>
-              </DialogTrigger>
-              
-              <DialogContent className="hs-gradient-br max-w-4xl w-full">
-                <div className="">
-                  <div className="mb-8">
-                    <div className="relative inline-block">
-                      <button className="flex items-center gap-2 px-4 py-2 text-white bg-[#1e2330] rounded-md border border-gray-700">
-                        <div className="w-6 h-6 rounded-full bg-[#1e2330]"></div>
-                        <span className="font-medium">Network</span>
-                        <ChevronDown className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="mb-8 space-y-8 p-8 rounded-lg bg-[#1a1f2b]/30 border border-gray-800">
-                    <label className="block mb-2 text-white text-lg">Amount</label>
-
-                    <div className="p-4 bg-[#1e2330] rounded-md input-box">
-                      <div className="flex items-center mb-4 p-0 input-box divide-x divide-gray-400">
-                        <Select defaultValue="edu">
-                          <SelectTrigger className="w-[120px] border-transparent">
-                            <SelectValue placeholder="Token" />
-                          </SelectTrigger>
-                          
-                          <SelectContent className="bg-[#1e2330]">
-                            <SelectItem value="edu">EDU</SelectItem>
-                            <SelectItem value="usdt">USDT</SelectItem>
-                            <SelectItem value="usdc">USDC</SelectItem>
-                          </SelectContent>
-                        </Select>
-
-                        <div className="flex-1 ml-4">
-                          <input value={amount} onChange={(e) => setAmount(e.target.value)} className="w-full bg-transparent border-none outline-none text-white" />
-                        </div>
-                      </div>
-                      <div className="text-gray-400">0.0016 USD</div>
-                    </div>
-
-                    <div className="mb-8">
-                      <label className="block mb-2 text-white text-lg">Wallet Address (optional)</label>
-                      <input value={walletAddress} className="input-box" onChange={(e) => setWalletAddress(e.target.value)} placeholder="Receiver's Wallet Address"/>
-                    </div>
-
-                    <div className="flex items-center mb-8">
-                      <Switch
-                        checked={encryptTransaction}
-                        onCheckedChange={setEncryptTransaction}
-                      />
-                      <span className="ml-2 text-white">Encrypt Transaction</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-center">
-                    <button className="w-full max-w-sm btn hs-primary py-3 text-lg">Send</button>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
+            <TransferModal />
           </div>
           
           <div className="p-4">

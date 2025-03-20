@@ -60,8 +60,16 @@ body {
     @apply bg-gradient-to-br from-[#29313C] to-[#29313C]/10;
   }
 
+  .hs-gradient-br-white {
+    @apply bg-gradient-to-br from-[#FFFFFF]/8 to-[#FFFFFF]/2;
+  }
+
   .hs-green-text {
     @apply text-[#47A663];
+  }
+
+  .hs-text {
+    @apply text-yellow-400;
   }
 
   .input-box {
