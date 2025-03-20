@@ -6,7 +6,7 @@ import { useAccount } from "wagmi";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import CoinSpin from '@/coin-spin.json'
+import CoinSpin from '@/components/coin-spin.json'
 
 export default function HashSend() {
   const { isConnected, isDisconnected } = useAccount()
