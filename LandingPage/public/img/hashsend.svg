@@ -1,0 +1,15 @@
+<svg width="779" height="779" viewBox="0 0 779 779" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path fill-rule="evenodd" clip-rule="evenodd" d="M540.594 475.437L387.491 563.83L387.491 769.897L387.5 769.902L719.076 578.467L719.076 195.596L387.5 4.16019L55.9241 195.596L55.9241 578.467L234.389 681.503L234.389 298.649L387.491 210.256L540.594 298.649L540.594 475.437Z" fill="#FFB800" fill-opacity="0.4"/>
+
+	<mask id="mask0_223_3" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="55" y="4" width="665" height="766">
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M540.594 475.437L387.492 563.83L387.492 769.897L387.501 769.902L719.077 578.467L719.077 195.596L387.501 4.16019L55.9248 195.596L55.9248 578.467L234.389 681.503L234.389 298.649L387.492 210.256L540.594 298.649L540.594 475.437Z" fill="#47A663"/>
+	</mask>
+
+	<g mask="url(#mask0_223_3)">
+		<rect width="477.951" height="179.172" transform="matrix(0.866025 0.5 0.5 -0.866025 -145.818 463.563)" fill="#FFB800"/>
+		<rect x="515.062" y="845.12" width="285.157" height="179.518" transform="rotate(-150 515.062 845.12)" fill="#FFB800"/>
+		<rect width="530.658" height="155.758" transform="matrix(0.866025 0.5 0.5 -0.866025 -145.809 257.955)" fill="#FFB800" fill-opacity="0.4"/>
+		<rect x="717.642" y="756.496" width="466.379" height="155.758" transform="rotate(-150 717.642 756.496)" fill="#FFB800" fill-opacity="0.4"/>
+		<rect width="428.728" height="155.758" transform="matrix(0.866025 0.5 0.5 -0.866025 26.8557 179.155)" fill="#FFB800" fill-opacity="0.4"/>
+	</g>
+</svg>
