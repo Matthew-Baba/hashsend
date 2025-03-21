@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Lottie from "lottie-react";
-import CoinSpin from '@/components/coin-spin.json'
 
 export default function HashSend() {
 
@@ -55,7 +53,6 @@ export default function HashSend() {
             />
 
             <div className="opacity-30">
-              <Lottie animationData={CoinSpin} className="h-60" />
             </div>
           </div>
         </div>
