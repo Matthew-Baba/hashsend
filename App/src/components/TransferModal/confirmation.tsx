@@ -3,7 +3,7 @@
 const Confirmation = () => {
   return (
     <div className="space-y-8">
-      <div className={`w-full space-y-8 px-8 py-6 rounded-lg hs-gradient-br-white border border-gray-600`}>
+      <div className={`w-full space-y-8 p-4 sm:px-8 sm:py-6 rounded-lg hs-gradient-br-white border border-gray-600`}>
         <div className="grid grid-cols-1 sm:grid-cols-5 items-center text-xl">
           <div className="col-span-4 text-3xl font-medium">0.5 EDU</div>
           <div className="col-span-1">0.003</div>

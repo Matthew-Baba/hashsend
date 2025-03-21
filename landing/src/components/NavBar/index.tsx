@@ -14,7 +14,7 @@ const NavBar = () => {
           <span className="font-bold text-xl">HashSend</span>
         </Link>
 
-        <Link href="https://hashsend.vercel.app/" className="btn hs-primary">
+        <Link href="https://app.hashsend.xyz" className="btn hs-primary">
           Launch App
         </Link>
       </div>

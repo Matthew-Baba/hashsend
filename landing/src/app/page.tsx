@@ -30,7 +30,7 @@ export default function HashSend() {
               </div>
 
               <div className="flex gap-4">
-                <Link href="https://hashsend.vercel.app/" className="btn hs-secondary"> Get Started </Link>
+                <Link href="https://app.hashsend.xyz" className="btn hs-secondary"> Get Started </Link>
               </div>
             </div>
 

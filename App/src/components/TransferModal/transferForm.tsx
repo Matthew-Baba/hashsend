@@ -16,7 +16,7 @@ const TransferForm = () => {
   const [encryptTransaction, setEncryptTransaction] = useState(false)
 
   return (
-    <div className="space-y-8 p-8 rounded-lg bg-[#1a1f2b]/30 border border-gray-800">
+    <div className="space-y-8 p-4 sm:p-8 rounded-lg bg-[#1a1f2b]/30 border border-gray-800">
       <label className="block mb-2 text-white text-lg">Amount</label>
 
       <div className="p-4 bg-[#1e2330] rounded-md input-box">
