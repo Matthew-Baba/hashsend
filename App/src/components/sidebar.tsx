@@ -16,7 +16,7 @@ export default function Sidebar() {
   const navItems = [
     {
       name: "Dashboard",
-      href: "/dashboard",
+      href: "/",
       icon: "/img/grid.svg",
       isImage: true,
     },
