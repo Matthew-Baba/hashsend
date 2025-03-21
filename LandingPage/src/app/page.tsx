@@ -38,7 +38,7 @@ export default function HashSend() {
             </div>
 
             <Image
-              src="img/penguin.png"
+              src="/img/penguin.png"
               alt="Cartoon penguin holding cryptocurrency coins"
               width={450}
               height={450}
@@ -48,7 +48,7 @@ export default function HashSend() {
 
           <div className="sm:col-span-6">
             <Image
-              src="img/hero.svg"
+              src="/img/hero.svg"
               alt="Cartoon penguin holding cryptocurrency coins"
               width={750}
               height={650}
@@ -98,7 +98,7 @@ export default function HashSend() {
               </div>
 
               <Image
-                src="img/hashsend.svg"
+                src="/img/hashsend.svg"
                 alt="HashSend logo"
                 width={100}
                 height={100}
@@ -107,7 +107,7 @@ export default function HashSend() {
 
               <div className="absolute -right-1 top-full sm:top-3/5 transform -translate-y-1/2">
                 <Image
-                  src="img/coin.png"
+                  src="/img/coin.png"
                   alt="3D HashSend logo"
                   width={400}
                   height={400}
@@ -125,7 +125,7 @@ export default function HashSend() {
           <div className="border-t border-gray-700 mb-24"></div>
           
           <Image
-            src="img/how-it-works.svg"
+            src="/img/how-it-works.svg"
             alt="How HashSend works"
             width={1600}
             height={10000}
@@ -142,7 +142,7 @@ export default function HashSend() {
           </div>
 
           <Image
-            src="img/dashboard.svg"
+            src="/img/dashboard.svg"
             alt="HashSend dashboard"
             width={1600}
             height={10000}
