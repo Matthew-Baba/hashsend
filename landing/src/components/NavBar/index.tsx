@@ -8,27 +8,15 @@ const NavBar = () => {
 
   return (
     <header className="p-4 border-b border-gray-700">
-      <div className="flex justify-between items-center app-width">
+      <div className="flex justify-between items-center app-width sm:px-8 px-2">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/img/hashsend.svg" alt="HashSend Logo" width={40} height={40} />
           <span className="font-bold text-xl">HashSend</span>
         </Link>
 
-        <div className="flex items-center gap-8">
-          <Link href="#about" className="hover:text-white">
-            About
-          </Link>
-
-          <Link href="#how-it-works" className="hover:text-white">
-            How It Works
-          </Link>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <Link href="https://hashsend.vercel.app/" className="btn hs-primary">
-            Launch App
-          </Link>
-        </div>
+        <Link href="https://hashsend.vercel.app/" className="btn hs-primary">
+          Launch App
+        </Link>
       </div>
     </header>
   )
