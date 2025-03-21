@@ -1,5 +1,4 @@
 import { ConnectKitButton } from 'connectkit'
-import { PlusCircleIcon } from 'lucide-react'
 
 interface WalletButtonProps {
   customClass?: string;
