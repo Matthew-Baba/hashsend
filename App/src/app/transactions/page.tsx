@@ -1,9 +1,71 @@
+"use client"
+
+import { useState } from "react"
 import Sidebar from '@/components/sidebar'
 import { MoreHorizontal } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableFooter
+} from "@/components/ui/table"
+import TransactionDetails from "@/components/TransactionDetail";
 
+
+interface WalletAddress {
+  network: string
+  date: string
+  amount: string
+  status: string
+  color: string
+}
 
 const Transactions = () => {
+  const [transactions, setTransactions] = useState<WalletAddress[]>([
+    {
+      network: "Binance Coin (BNB)",
+      date: "2/25/2025",
+      amount: "$411.39",
+      status: "claimed",
+      color: "bg-[#F3BA2F]"
+    },
+    {
+      network: "Polkadot (DOT)",
+      date: "2/25/2025",
+      amount: "$20.33",
+      status: "pending",
+      color: "bg-[#E6007A]"
+    },
+    {
+      network: "Bitcoin (BTC)",
+      date: "2/25/2025",
+      amount: "$37,903.00",
+      status: "claimed",
+      color: "bg-[#F7931A]"
+    },
+    {
+      network: "Ethereum (ETH)",
+      date: "2/25/2025",
+      amount: "$2,785.20",
+      status: "claimed",
+      color: "bg-[#627EEA]"
+    },
+    {
+      network: "Chainlink (LINK)",
+      date: "2/25/2025",
+      amount: "$17.27",
+      status: "claimed",
+      color: "bg-[#2A5ADA]"
+    },
+  ])
+  
   return (
     <main className="flex">
       <Sidebar />
@@ -19,223 +81,110 @@ const Transactions = () => {
             </TabsList>
             
             <TabsContent value="sent">
-              <table className="w-full bg-[#29313C] rounded-lg">
-                <thead className="border-b-2 border-gray-900">
-                  <tr className="text-gray-500 uppercase">
-                    <th className="text-left p-4">Network</th>
-                    <th className="text-left p-4">Date</th>
-                    <th className="text-left p-4">Amount</th>
-                    <th className="text-left p-4">Status</th>
-                    <th className="text-left p-4">Actions</th>
-                  </tr>
-                </thead>
+              <Table className="bg-[#29313C] rounded-lg">
+                <TableHeader>
+                  <TableRow className="border-b border-gray-900 text-base uppercase">
+                    <TableHead className="p-4 font-semibold">Network</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Amount</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="p-4 font-semibold">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
 
-                <tbody className="divide-y-2 divide-gray-900">
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#F3BA2F] flex items-center justify-center">
-                          <span className="text-black font-bold text-sm">B</span>
+                <TableBody className="divide-y-2 divide-gray-900">
+                  {transactions.map((transaction, id) => (
+                    <TableRow key={id} className="px-4 py-6 text-base">
+                      <TableCell className="">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${transaction.color}`}>
+                            <span className="text-black font-bold text-sm">{(transaction.network).charAt(0)}</span>
+                          </div>
+                          <span className="font-medium text-base">{transaction.network}</span>
                         </div>
-                        <span className="font-medium">Binance Coin (BNB)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 411.39</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                      </TableCell>
 
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#E6007A] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">P</span>
-                        </div>
-                        <span className="font-medium">Polkadot (DOT)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 20.33</td>
-                    <td className="p-4 text-red-400">Pending</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#F7931A] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">B</span>
-                        </div>
-                        <span className="font-medium">Bitcoin (BTC)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 37,903.00</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                      <TableCell>{transaction.date}</TableCell>
 
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#627EEA] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">E</span>
-                        </div>
-                        <span className="font-medium">Ethereum (ETH)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 2,785.20</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                      <TableCell>{transaction.amount}</TableCell>
+                      
+                      <TableCell className={`capitalize text-base ${transaction.status == "claimed" ? 'hs-green-text' : 'text-red-400'}`}>{ transaction.status }</TableCell>
 
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#2A5ADA] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">C</span>
-                        </div>
-                        <span className="font-medium">Chainlink (LINK)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 17.27</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      <TableCell className="">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button size="icon" className="hover:text-white">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+
+                          <DropdownMenuContent align="end" className="bg-gray-800 border-gray-700">
+                            <DropdownMenuItem className="text-white hover:bg-gray-700">
+                              <TransactionDetails />
+                            </DropdownMenuItem>
+                            
+                            <DropdownMenuItem className="text-white hover:bg-gray-700">Export Key</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </TabsContent>
 
             <TabsContent value="claims">
-              <table className="w-full bg-[#29313C] rounded-lg">
-                <thead className="border-b-2 border-gray-900">
-                  <tr className="text-gray-500 uppercase">
-                    <th className="text-left p-4">Network</th>
-                    <th className="text-left p-4">Date</th>
-                    <th className="text-left p-4">Amount</th>
-                    <th className="text-left p-4">Status</th>
-                    <th className="text-left p-4">Actions</th>
-                  </tr>
-                </thead>
+              <Table className="bg-[#29313C] rounded-lg">
+                <TableHeader>
+                  <TableRow className="border-b border-gray-900 text-base uppercase">
+                    <TableHead className="p-4 font-semibold">Network</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Amount</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="p-4 font-semibold">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
 
-                <tbody className="divide-y-2 divide-gray-900">
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#627EEA] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">E</span>
+                <TableBody className="divide-y-2 divide-gray-900">
+                  {transactions.map((transaction, id) => (
+                    <TableRow key={id} className="px-4 py-6 text-base">
+                      <TableCell className="">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${transaction.color}`}>
+                            <span className="text-black font-bold text-sm">{(transaction.network).charAt(0)}</span>
+                          </div>
+                          <span className="font-medium text-base">{transaction.network}</span>
                         </div>
-                        <span className="font-medium">Ethereum (ETH)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 2,785.20</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                      </TableCell>
 
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#2A5ADA] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">C</span>
-                        </div>
-                        <span className="font-medium">Chainlink (LINK)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 17.27</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                      <TableCell>{transaction.date}</TableCell>
 
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#F3BA2F] flex items-center justify-center">
-                          <span className="text-black font-bold text-sm">B</span>
-                        </div>
-                        <span className="font-medium">Binance Coin (BNB)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 411.39</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                      <TableCell>{transaction.amount}</TableCell>
 
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#E6007A] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">P</span>
-                        </div>
-                        <span className="font-medium">Polkadot (DOT)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 20.33</td>
-                    <td className="p-4 text-red-400">Pending</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="">
-                    <td className="px-4 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#F7931A] flex items-center justify-center">
-                          <span className="text-white font-bold text-sm">B</span>
-                        </div>
-                        <span className="font-medium">Bitcoin (BTC)</span>
-                      </div>
-                    </td>
-                    <td className="p-4">2/25/2025</td>
-                    <td className="p-4">$ 37,903.00</td>
-                    <td className="p-4 hs-green-text">Claimed</td>
-                    <td className="p-4">
-                      <button className="h-8 w-8 text-gray-400">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      <TableCell className={`capitalize text-base ${transaction.status == "claimed" ? 'hs-green-text' : 'text-red-400'}`}>{transaction.status}</TableCell>
+
+                      <TableCell className="">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button size="icon" className="hover:text-white">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+
+                          <DropdownMenuContent align="end" className="bg-gray-800 border-gray-700">
+
+                            <DropdownMenuItem className="text-white hover:bg-gray-700">
+                              <TransactionDetails />
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="text-white hover:bg-gray-700">Export Key</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </TabsContent>
           </Tabs>
         </div>

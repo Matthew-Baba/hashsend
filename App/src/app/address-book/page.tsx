@@ -15,6 +15,13 @@ import {
   TableRow,
   TableFooter
 } from "@/components/ui/table"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 
 interface WalletAddress {
