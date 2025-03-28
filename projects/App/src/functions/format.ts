@@ -4,11 +4,11 @@ import { getAddress } from '@ethersproject/address'
 import { BigNumberish } from '@ethersproject/bignumber'
 import { formatUnits, parseUnits } from '@ethersproject/units'
 import { Currency, CurrencyAmount, Fraction, JSBI, Price } from '@swapsicledex/swapsicle-sdk'
-// @ts-ignore TYPE NEEDS FIXING
+// @ts-expect-error TYPE NEEDS FIXING
 import Numeral from 'numeral'
 import { truncateValue } from './misc-functions'
 
-// @ts-ignore TYPE NEEDS FIXING
+// @ts-expect-error TYPE NEEDS FIXING
 export const capitalize = (s) => {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1)
@@ -55,7 +55,7 @@ export const decimalFormatter = new Intl.NumberFormat('en-US', {
   maximumSignificantDigits: 4,
 })
 
-// @ts-ignore TYPE NEEDS FIXING
+// @ts-expect-error TYPE NEEDS FIXING
 export function formatPercent(percentString) {
   const percent = parseFloat(percentString)
 
@@ -88,8 +88,8 @@ export function formatPercent(percentString) {
   }
 }
 
-export const formatNumber = (number: any, usd = false, scale = true, decimals = 0) => {
-  if (isNaN(number) || number === '' || number === undefined) {
+export const formatNumber = (number: string, usd = false, scale = true, decimals = 0) => {
+  if (isNaN(Number(number)) || number === '' || number === undefined) {
     return usd ? '$0.00' : '0'
   }
   const num = parseFloat(number)
@@ -129,8 +129,8 @@ export const formatNumber = (number: any, usd = false, scale = true, decimals = 
   return parseFloat(String(num)).toPrecision(4)
 }
 
-export function formatNumberScale(number: any, usd = false) {
-  if (isNaN(number) || number === '' || number === undefined) {
+export function formatNumberScale(number: string, usd = false) {
+  if (isNaN(Number(number)) || number === '' || number === undefined) {
     return usd ? '$0.00' : '0'
   }
   const num = parseFloat(number)

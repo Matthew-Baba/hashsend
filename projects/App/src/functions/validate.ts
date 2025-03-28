@@ -17,7 +17,7 @@ export const isEmptyValue = (text: string) =>
     : text === '' || text.replace(/0/g, '').replace(/\./, '') === ''
 
 // returns the checksummed address if the address is valid, otherwise returns false
-export function isAddress(value: any): string | false {
+export function isAddress(value: string): string | false {
   try {
     return getAddress(value)
   } catch {
