@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ConnectedWalletCard from "./connected-wallet-card";
 import {Button} from "@/components/ui/button";
-import TransferModal from "./TransferModal";
+import TransferModal from "./TransferForm";
 
 
 
@@ -66,7 +66,7 @@ export default function Sidebar() {
             );
           })}
           <Button
-            variant="outline" 
+            variant="outline"
             className="h-9 text-sm font-medium border-[#3A4358] hover:bg-[#0c1a36] flex items-center"
           >
             <Upload className="h-4 w-4 mr-2" />
@@ -104,13 +104,13 @@ export default function Sidebar() {
                     </Link>
                   </div>
                 );
-                
+
               })}
             </nav>
 
             <TransferModal />
           </div>
-          
+
           <div className="p-4">
             <ConnectedWalletCard />
           </div>

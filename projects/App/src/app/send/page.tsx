@@ -1,4 +1,4 @@
-import TransferModal from '@/components/TransferModal'
+import TransferModal from '@/components/TransferForm'
 import React from 'react'
 
 const SendToken = () => {
