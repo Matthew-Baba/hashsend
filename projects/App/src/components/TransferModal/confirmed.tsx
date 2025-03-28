@@ -3,7 +3,7 @@ import { Copy } from 'lucide-react'
 const ConfirmedTransaction = () => {
   return (
     <div className="space-y-8">
-      <div className="p-4 rounded-lg bg-[#1a1f2b]/30 border border-gray-800">
+      <div className="rounded-lg">
         <div className="text-lg py-4 space-y-4">
           <div className="grid grid-cols-1">
             <div className="col-span-1">Claiming Code</div>
@@ -19,7 +19,7 @@ const ConfirmedTransaction = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-x-2 cursor-pointer place-self-end px-3 py-1.5 rounded-md bg-[#1a1f2b] w-fit">
+        <div className="flex items-center gap-x-2 cursor-pointer place-self-end px-3 py-1.5 rounded-md w-fit">
           <Copy /> Copy
         </div>
       </div>

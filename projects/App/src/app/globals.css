@@ -75,7 +75,7 @@ body {
   }
 
   .hs-secondary {
-    @apply bg-white/10 text-white border border-gray-600 hover:bg-gray-700/30;
+    @apply bg-white/10 text-white border border-gray-400 hover:bg-gray-700/30;
   }
 
   .hs-gradient-br {
@@ -99,6 +99,6 @@ body {
   }
 
   .input-box {
-    @apply w-full px-4 py-3 rounded bg-[#1e2330] border border-gray-700 text-white outline-none focus:border-gray-400
+    @apply w-full px-4 py-3 rounded bg-white border border-gray-300 text-black outline-none focus:border-gray-400
   }
 }

@@ -1,9 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Trash2, ChevronUp, MoreHorizontal } from 'lucide-react';
+import { Copy, Trash2, ChevronUp } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import {
   Table,
@@ -50,6 +49,7 @@ export default function HashSend() {
       color: "bg-[#F7931A]"
     }
   ])
+
   const [addresses, setAddresses] = useState<AddressBook[]>([
     { id: "1", address: "0x3A6bE472F5c8A7E89D29F3E17D3B6Dd1F8e5Caf3" },
     { id: "2", address: "0x91eF3A8dBbd2Ce5b0c6f2f7B6D0131B5b8a16e6E" },
@@ -73,7 +73,7 @@ export default function HashSend() {
   const deleteAddress = (id: string) => {
     setAddresses(addresses.filter((address) => address.id !== id))
   }
-  
+
 
   return (
     <main className="app-width space-y-12">
@@ -95,7 +95,7 @@ export default function HashSend() {
             </div>
           </div>
         </div>
-        
+
         <div className="rounded-lg bg-white border-2 border-gray-200 shadow-lg px-4 py-6 flex items-start justify-between">
           <div className="">
             <h3 className="font-medium mb-3">Total Claims</h3>
@@ -132,7 +132,7 @@ export default function HashSend() {
           </div>
         </div>
       </section>
-      
+
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <aside className="col-span-1 sm:col-span-2 bg-white shadow-lg rounded-lg py-8 px-4">
           <Tabs defaultValue="sent" className="space-y-6">

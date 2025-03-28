@@ -5,21 +5,14 @@
 			"name": "ROOT"
 		},
 		{
-			"path": "./projects/App",
-			"name": "App"
+			"path": "./projects/App"
 		},
 		{
-			"path": "./projects/landing",
-			"name": "Landing"
+			"path": "./projects/landing"
 		}
 	],
 	"settings": {
     "files.exclude": {
-      "**/.git": true,
-      "**/.svn": true,
-      "**/.hg": true,
-      "**/.DS_Store": true,
-      "**/Thumbs.db": true,
       "projects": true,
     }
   }
