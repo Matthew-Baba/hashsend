@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Sidebar from '@/components/sidebar'
 import { MoreHorizontal } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -17,16 +16,9 @@ import {
 import TransactionDetails from "@/components/TransactionDetail";
 
 
-interface WalletAddress {
-  network: string
-  date: string
-  amount: string
-  status: string
-  color: string
-}
 
 const Transactions = () => {
-  const [transactions, setTransactions] = useState<WalletAddress[]>([
+  const transactions = [
     {
       network: "Binance Coin (BNB)",
       date: "2/25/2025",
@@ -62,12 +54,12 @@ const Transactions = () => {
       status: "claimed",
       color: "bg-[#2A5ADA]"
     },
-  ])
-  
+  ]
+
   return (
     <main className="flex">
       <Sidebar />
-      
+
       <section className="h-screen overflow-y-auto w-full pb-32">
         <div className="p-4 space-y-5">
           <h4 className="font-bold text-2xl">Transactions</h4>
@@ -77,7 +69,7 @@ const Transactions = () => {
               <TabsTrigger className="text-base" value="sent">Sent</TabsTrigger>
               <TabsTrigger className="text-base" value="claims">Claims</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="sent">
               <Table className="bg-[#29313C] rounded-lg">
                 <TableHeader>
@@ -105,7 +97,7 @@ const Transactions = () => {
                       <TableCell>{transaction.date}</TableCell>
 
                       <TableCell>{transaction.amount}</TableCell>
-                      
+
                       <TableCell className={`capitalize text-base ${transaction.status == "claimed" ? 'hs-green-text' : 'text-red-400'}`}>{ transaction.status }</TableCell>
 
                       <TableCell className="">
@@ -120,7 +112,7 @@ const Transactions = () => {
                             <DropdownMenuItem className="text-white hover:bg-gray-700">
                               <TransactionDetails />
                             </DropdownMenuItem>
-                            
+
                             <DropdownMenuItem className="text-white hover:bg-gray-700">Export Key</DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

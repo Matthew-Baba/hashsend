@@ -14,14 +14,6 @@ import {
 } from "@/components/ui/table"
 import TransactionDetails from "@/components/TransactionDetail";
 
-
-interface WalletAddress {
-  network: string
-  amount: string
-  status: string
-  color: string
-}
-
 interface AddressBook {
   id: string
   address: string
@@ -29,7 +21,7 @@ interface AddressBook {
 
 
 export default function HashSend() {
-  const [transactions, setTransactions] = useState<WalletAddress[]>([
+  const transactions = [
     {
       network: "EDU",
       amount: "$411.39",
@@ -48,7 +40,7 @@ export default function HashSend() {
       status: "claimed",
       color: "bg-[#F7931A]"
     }
-  ])
+  ]
 
   const [addresses, setAddresses] = useState<AddressBook[]>([
     { id: "1", address: "0x3A6bE472F5c8A7E89D29F3E17D3B6Dd1F8e5Caf3" },
