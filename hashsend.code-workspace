@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "./",
+			"name": "ROOT"
+		},
+		{
+			"path": "./projects/App",
+			"name": "App"
+		},
+		{
+			"path": "./projects/landing",
+			"name": "Landing"
+		}
+	],
+	"settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "projects": true,
+    }
+  }
+}

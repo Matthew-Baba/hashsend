@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-shark-50: #f5f7fa;
+  --color-shark-100: #ebeef3;
+  --color-shark-200: #d3dbe4;
+  --color-shark-300: #abbcce;
+  --color-shark-400: #7e98b2;
+  --color-shark-500: #5e7c99;
+  --color-shark-600: #4a637f;
+  --color-shark-700: #3d5067;
+  --color-shark-800: #354557;
+  --color-shark-900: #303b4a;
+  --color-shark-950: #1f2630;
+
+  --color-java-50: #eefffd;
+  --color-java-100: #c6fffc;
+  --color-java-200: #8efffa;
+  --color-java-300: #4dfbf8;
+  --color-java-400: #19e6e8;
+  --color-java-500: #00b9be;
+  --color-java-600: #009ca4;
+  --color-java-700: #027b83;
+  --color-java-800: #086067;
+  --color-java-900: #0c5055;
+  --color-java-950: #002e34;
+
+  --color-turquoise-blue-50: #ebfffe;
+  --color-turquoise-blue-100: #ceffff;
+  --color-turquoise-blue-200: #a2fdff;
+  --color-turquoise-blue-300: #63f9fd;
+  --color-turquoise-blue-400: #1ceaf4;
+  --color-turquoise-blue-500: #00dbe8;
+  --color-turquoise-blue-600: #03a4b7;
+  --color-turquoise-blue-700: #0a8294;
+  --color-turquoise-blue-800: #126878;
+  --color-turquoise-blue-900: #145665;
+  --color-turquoise-blue-950: #063a46;
+}
+
+:root {
+  --background: #F8FAFF;
+}
+
+@theme inline {
+--color-background: var(--background);
+--color-foreground: var(--foreground);
+--font-sans: var(--font-geist-sans);
+--font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+  --background: #F8FAFF;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .app-width {
+    @apply w-full max-w-7xl mx-auto py-14;
+  }
+
+  .btn {
+    @apply outline-none shadow-md transition-all duration-500 rounded-md hover:shadow-lg font-medium text-lg cursor-pointer px-4 py-2.5;
+  }
+
+  .hs-primary {
+    @apply bg-gradient-to-br from-java-500 to-turquoise-blue-500 text-[#1a1f2e];
+  }
+
+  .hs-secondary {
+    @apply bg-white/10 text-white border border-gray-600 hover:bg-gray-700/30;
+  }
+
+  .hs-gradient-br {
+    @apply bg-gradient-to-br from-[#29313C] to-[#29313C]/10;
+  }
+
+  .hs-gradient-br-white {
+    @apply bg-gradient-to-br from-[#FFFFFF]/8 to-[#FFFFFF]/2;
+  }
+
+  .hs-text-gradient {
+    @apply bg-gradient-to-r from-java-500 to-turquoise-blue-500 bg-clip-text text-transparent;
+  }
+
+  .hs-green-text {
+    @apply text-[#47A663];
+  }
+
+  .hs-text {
+    @apply text-java-500;
+  }
+
+  .input-box {
+    @apply w-full px-4 py-3 rounded bg-[#1e2330] border border-gray-700 text-white outline-none focus:border-gray-400
+  }
+}

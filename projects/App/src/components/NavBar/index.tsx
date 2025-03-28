@@ -17,10 +17,10 @@ const NavBar = () => {
   const [walletAddress, setWalletAddress] = useState("")
 
   return (
-    <header className="p-4 border-b border-gray-700 flex justify-between items-center">
+    <header className="p-4 bg-shark-950 flex justify-between items-center">
       <Link href="/" className="flex items-center gap-2">
         <Image src="/img/hashsend.svg" alt="HashSend Logo" width={40} height={40} />
-        <span className="font-bold text-xl">HashSend</span>
+        <h1 className="font-bold text-2xl">Hash<span className="text-turquoise-blue-500">Send</span></h1>
       </Link>
 
       <div className="flex items-center gap-4">

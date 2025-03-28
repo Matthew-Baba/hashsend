@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Web3Provider } from "@/providers/Web3Provider";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Web3Provider>
           <NavBar />
           
           {children}
+
+          <Footer />
         </Web3Provider>
       </body>
     </html>

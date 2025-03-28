@@ -9,12 +9,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-  TableFooter
 } from "@/components/ui/table"
 import TransactionDetails from "@/components/TransactionDetail";
 
