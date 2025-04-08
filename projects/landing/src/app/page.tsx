@@ -23,7 +23,7 @@ export default function HashSend() {
             </button>
           </div>
 
-          <Image src="/img/token-wheel.png" height={500} width={500} alt="" />
+          <Image src="/img/token-wheel.png" height={500} width={500} alt="Wheel of crypto token logos" />
         </div>
         {/* Light effect overlay */}
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-transparent via-[#1a2330]/50 to-transparent opacity-70"></div>
