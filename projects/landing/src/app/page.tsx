@@ -1,6 +1,5 @@
 "use client";
 
-import { CuboidIcon as Cube } from "lucide-react"
 import Image from "next/image";
 
 export default function HashSend() {
