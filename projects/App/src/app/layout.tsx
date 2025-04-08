@@ -4,6 +4,9 @@ import "./globals.css";
 import { Web3Provider } from "@/providers/Web3Provider";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
+import { ToastContainer } from "react-toastify";
+import RecoilRootProvider from "@/providers/RecoilRootProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +31,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Web3Provider>
-          <NavBar />
-          
-          {children}
+        <RecoilRootProvider>
+          <Web3Provider>
+            <NavBar />
 
-          <Footer />
-        </Web3Provider>
+            {children}
+
+            <Footer />
+            <Toaster />
+            <ToastContainer
+              position="bottom-left"
+            />
+          </Web3Provider>
+        </RecoilRootProvider>
       </body>
     </html>
   );
