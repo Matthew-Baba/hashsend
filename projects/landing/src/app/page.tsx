@@ -1,151 +1,156 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { CuboidIcon as Cube } from "lucide-react"
 
 export default function HashSend() {
 
   return (
-    <main className="overflow-y-auto h-full pb-32">
-      <section
-        className="min-h-screen"
-        style={{
-          background: "url('/img/hero-bg.png')",
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-9 app-width py-12">
-          <div className="sm:col-span-3 flex flex-col justify-center">
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h1 className="text-5xl sm:text-7xl font-bold text-yellow-500">
-                  Send Crypto
-                  <br />
-                  Instantly
-                </h1>
-
-                <p className="text-2xl mb-8">No Wallet Address Needed!</p>
-              </div>
-
-              <div className="flex gap-4">
-                <Link href="https://app.hashsend.xyz" className="btn hs-secondary"> Get Started </Link>
-              </div>
-            </div>
-
-            <Image
-              src="/img/penguin.png"
-              alt="Cartoon penguin holding cryptocurrency coins"
-              width={450}
-              height={450}
-              className=""
-            />
-          </div>
-
-          <div className="sm:col-span-6">
-            <Image
-              src="/img/hero.svg"
-              alt="HashSend hero"
-              width={750}
-              height={650}
-              className="place-self-end"
-            />
-
-            <div className="opacity-30">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="min-h-screen">
-        <div className="hs-gradient-br py-12 relative overflow-hidden">
-          <div className="app-width py-12" id="about">
-            <h1 className="text-3xl font-bold mb-12">About HashSend</h1>
-
-            <div className="border border-gray-700 rounded-lg py-16 p-8 space-y-16 sm:space-y-0">
-              <div className="mb-16 border-b border-gray-700 pb-16">
-                <h2 className="text-xl font-bold mb-4">Send Token</h2>
-
-                <p className="w-full max-w-4xl mb-2">
-                  HashSend is a revolutionary Web3 payment system that lets you send crypto to anyone—without needing their wallet address.
-                </p>
-
-                <p className="w-full max-w-4xl">
-                  Simply generate a unique code, share it, and let the recipient claim their funds securely.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-6xl mb-16">
-                <div>
-                  <h3 className="text-yellow-500 font-bold mb-3">No Wallet Address Needed</h3>
-                  <p className="">Send funds using a secure, shareable code.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-yellow-500 font-bold mb-3">Multi-Chain Support</h3>
-                  <p className="">Choose your preferred blockchain and token.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-yellow-500 font-bold mb-3">End-to-End Encryption</h3>
-                  <p className="">Only the intended recipient can claim the funds.</p>
-                </div>
-              </div>
-
-              <Image
-                src="/img/hashsend.svg"
-                alt="HashSend logo"
-                width={100}
-                height={100}
-                className="opacity-30"
-              />
-
-              <div className="absolute -right-1 top-full sm:top-3/5 transform -translate-y-1/2">
-                <Image
-                  src="/img/coin.png"
-                  alt="3D HashSend logo"
-                  width={400}
-                  height={400}
-                  className=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="app-width py-24" id="how-it-works">
-          <h2 className="text-2xl font-bold text-yellow-500 text-center mb-16">How It Works Section</h2>
-
-          {/* Divider */}
-          <div className="border-t border-gray-700 mb-24"></div>
-
-          <Image
-            src="/img/how-it-works.svg"
-            alt="How HashSend works"
-            width={1600}
-            height={10000}
-            className="mx-auto"
-          />
-        </div>
-
-        <div className="app-width py-12 mt-16">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-yellow-500">
-              Manage, Track & Secure Your Crypto Transactions
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-shark-950 py-20 relative overflow-hidden">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <div className="z-10">
+            <h1 className="text-5xl font-bold text-white mb-4">
+              Send and Claim
+              <br />
+              Crypto Instantly
             </h1>
-            <p className="text-gray-400">Effortless Crypto Transfers & Claim Tracking</p>
+            <p className="text-gray-300 mb-8 max-w-md">
+              Send digital assets securely without requiring the recipient&apos;s wallet address upfront.
+            </p>
+            <button className="bg-white text-gray-900 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+              Get Started
+            </button>
           </div>
+          <div className="relative h-[400px]">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-[300px] h-[300px]">
+                {/* Center cube logo */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                  <div className="bg-shark-950 p-4 rounded-md">
+                    <Cube className="text-white h-12 w-12" />
+                  </div>
+                </div>
 
-          <Image
-            src="/img/dashboard.svg"
-            alt="HashSend dashboard"
-            width={1600}
-            height={10000}
-            className="mx-auto"
-          />
+                {/* Orbiting crypto icons */}
+                <div className="absolute w-full h-full rounded-full border border-gray-700 animate-[spin_30s_linear_infinite]">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full">
+                    <div className="h-6 w-6 flex items-center justify-center">$</div>
+                  </div>
+                </div>
+
+                <div className="absolute w-[200px] h-[200px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-gray-700 animate-[spin_20s_linear_infinite_reverse]">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full">
+                    <div className="h-6 w-6 flex items-center justify-center">A</div>
+                  </div>
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-2 rounded-full">
+                    <div className="h-6 w-6 flex items-center justify-center">T</div>
+                  </div>
+                </div>
+
+                <div className="absolute w-[250px] h-[250px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-gray-700 animate-[spin_25s_linear_infinite]">
+                  <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full">
+                    <div className="h-6 w-6 flex items-center justify-center">⬡</div>
+                  </div>
+                  <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-2 rounded-full">
+                    <div className="h-6 w-6 flex items-center justify-center text-white">W</div>
+                  </div>
+                  <div className="absolute bottom-5 right-5 bg-white p-2 rounded-full">
+                    <div className="h-6 w-6 flex items-center justify-center">⟠</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Light effect overlay */}
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-transparent via-[#1a2330]/50 to-transparent opacity-70"></div>
+      </section>
+
+      {/* About Section */}
+      <section className="bg-gray-100 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-16">About HashSend</h2>
+
+          <div className="bg-[#1e2a3a] rounded-lg p-10 text-left">
+            <h3 className="text-2xl font-bold text-white mb-4">Send Token</h3>
+            <p className="text-gray-300 mb-6 max-w-3xl">
+              HashSend is a revolutionary Web3 payment system that lets you send crypto to anyone without needing their
+              wallet address. Simply generate a unique code, share it, and let the recipient claim their funds securely.
+            </p>
+
+            <hr className="border-gray-700 my-8" />
+
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
+              <div className="bg-shark-950 p-6 rounded-lg">
+                <h4 className="hs-text font-medium mb-2">No Wallet Address Needed</h4>
+                <p className="text-gray-300 text-sm">Send funds using a secure, shareable code.</p>
+              </div>
+              <div className="bg-shark-950 p-6 rounded-lg">
+                <h4 className="hs-text font-medium mb-2">Multi-Chain Support</h4>
+                <p className="text-gray-300 text-sm">Choose your preferred blockchain and token.</p>
+              </div>
+              <div className="bg-shark-950 p-6 rounded-lg">
+                <h4 className="hs-text font-medium mb-2">End-to-End Encryption</h4>
+                <p className="text-gray-300 text-sm">Only the intended recipient can claim the funds.</p>
+              </div>
+            </div>
+
+            <div className="mt-16 mb-8 bg-gradient-to-r from-[#1a2330] via-[#1e2a3a] to-[#1a2330] rounded-lg p-10 text-center relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-3xl font-bold text-white mb-2">Makes Claiming Effortless</h3>
+                <p className="text-gray-300 text-sm mb-6">
+                  Securely redeem funds with a claim code, verify details, and choose your preferred blockchain and
+                  token.
+                </p>
+                <button className="bg-white text-gray-900 px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition">
+                  Get&apos;s Started
+                </button>
+              </div>
+              {/* Light effect overlay */}
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-transparent via-[#1a2330]/20 to-transparent opacity-70"></div>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* How It Works Section */}
+      <section className="bg-shark-950 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-white text-center mb-16">How It Works Section</h2>
+
+          <hr className="border-gray-800 mb-16" />
+
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="border border-gray-700 rounded-lg p-6 relative">
+              <h4 className="hs-text font-medium mb-2">Connect Your Wallet</h4>
+              <p className="text-gray-300 text-sm mb-8">Just connect your wallet to start transacting.</p>
+              <div className="border border-java-500 border-dashed rounded p-4 h-16"></div>
+            </div>
+
+            <div className="border border-gray-700 rounded-lg p-6 relative">
+              <h4 className="hs-text font-medium mb-2">Enter Amount & Generate Code</h4>
+              <p className="text-gray-300 text-sm mb-8">Send funds by creating a unique, encrypted code.</p>
+              <div className="border border-java-500 border-dashed rounded p-4 h-16"></div>
+            </div>
+
+            <div className="border border-gray-700 rounded-lg p-6 relative">
+              <h4 className="hs-text font-medium mb-2">Share Securely</h4>
+              <p className="text-gray-300 text-sm mb-8">Send the code to the recipient via any private channel.</p>
+              <div className="border border-java-500 border-dashed rounded p-4 h-16"></div>
+            </div>
+
+            <div className="border border-gray-700 rounded-lg p-6 relative">
+              <h4 className="hs-text font-medium mb-2">Claim & Receive Funds</h4>
+              <p className="text-gray-300 text-sm mb-8">
+                Enter the code, selects the preferred blockchain, and claims the funds.
+              </p>
+              <div className="border border-java-500 border-dashed rounded p-4 h-16"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   )
 }

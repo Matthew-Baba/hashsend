@@ -30,20 +30,20 @@ export default function Footer() {
 
           {/* Others Links */}
           <div className="md:col-span-1">
-            <h3 className="text-yellow-500 font-bold mb-4">Others</h3>
+            <h3 className="hs-text font-bold mb-4">Others</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="#" className="hover:text-yellow-500 transition-colors">
+                <Link href="#" className="hs-text-hover transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-yellow-500 transition-colors">
+                <Link href="#" className="hs-text-hover transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-yellow-500 transition-colors">
+                <Link href="#" className="hs-text-hover transition-colors">
                   How it works
                 </Link>
               </li>
@@ -52,17 +52,17 @@ export default function Footer() {
 
           {/* Community Links */}
           <div className="md:col-span-2">
-            <h3 className="text-yellow-500 font-bold mb-4">Community</h3>
+            <h3 className="hs-text font-bold mb-4">Community</h3>
             <div className="flex space-x-4">
-              <Link href="#" className="hover:text-yellow-500 transition-colors">
+              <Link href="#" className="hs-text-hover transition-colors">
                 <Github className="w-5 h-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
-              <Link href="#" className="hover:text-yellow-500 transition-colors">
+              <Link href="#" className="hs-text-hover transition-colors">
                 <Facebook className="w-5 h-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="hover:text-yellow-500 transition-colors">
+              <Link href="#" className="hs-text-hover transition-colors">
                 <Twitter className="w-5 h-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
