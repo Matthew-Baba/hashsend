@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HashSend() {
 
@@ -18,9 +19,10 @@ export default function HashSend() {
             <p className="text-gray-300 mb-8 max-w-md">
               Send digital assets securely without requiring the recipient&apos;s wallet address upfront.
             </p>
-            <button className="bg-white text-gray-900 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+
+            <Link href="https://app.hashsend.xyz" className="bg-white text-gray-900 px-6 py-4 rounded-md font-medium hover:bg-gray-100 transition">
               Get Started
-            </button>
+            </Link>
           </div>
 
           <Image src="/img/token-wheel.png" height={500} width={500} alt="Wheel of crypto token logos" />
@@ -65,9 +67,10 @@ export default function HashSend() {
                   Securely redeem funds with a claim code, verify details, and choose your preferred blockchain and
                   token.
                 </p>
-                <button className="bg-white text-gray-900 px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition">
-                  Get&apos;s Started
-                </button>
+
+                <Link href="https://app.hashsend.xyz" className="bg-white text-gray-900 px-6 py-4 rounded-md font-medium hover:bg-gray-100 transition">
+                  Get Started
+                </Link>
               </div>
               {/* Light effect overlay */}
               <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-transparent via-[#1a2330]/20 to-transparent opacity-70"></div>
