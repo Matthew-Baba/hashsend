@@ -1,6 +1,7 @@
 "use client";
 
 import { CuboidIcon as Cube } from "lucide-react"
+import Image from "next/image";
 
 export default function HashSend() {
 
@@ -22,46 +23,8 @@ export default function HashSend() {
               Get Started
             </button>
           </div>
-          <div className="relative h-[400px]">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-[300px] h-[300px]">
-                {/* Center cube logo */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                  <div className="bg-shark-950 p-4 rounded-md">
-                    <Cube className="text-white h-12 w-12" />
-                  </div>
-                </div>
 
-                {/* Orbiting crypto icons */}
-                <div className="absolute w-full h-full rounded-full border border-gray-700 animate-[spin_30s_linear_infinite]">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full">
-                    <div className="h-6 w-6 flex items-center justify-center">$</div>
-                  </div>
-                </div>
-
-                <div className="absolute w-[200px] h-[200px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-gray-700 animate-[spin_20s_linear_infinite_reverse]">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full">
-                    <div className="h-6 w-6 flex items-center justify-center">A</div>
-                  </div>
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white p-2 rounded-full">
-                    <div className="h-6 w-6 flex items-center justify-center">T</div>
-                  </div>
-                </div>
-
-                <div className="absolute w-[250px] h-[250px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-gray-700 animate-[spin_25s_linear_infinite]">
-                  <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full">
-                    <div className="h-6 w-6 flex items-center justify-center">⬡</div>
-                  </div>
-                  <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-2 rounded-full">
-                    <div className="h-6 w-6 flex items-center justify-center text-white">W</div>
-                  </div>
-                  <div className="absolute bottom-5 right-5 bg-white p-2 rounded-full">
-                    <div className="h-6 w-6 flex items-center justify-center">⟠</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Image src="/img/token-wheel.png" height={500} width={500} alt="" />
         </div>
         {/* Light effect overlay */}
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-transparent via-[#1a2330]/50 to-transparent opacity-70"></div>
