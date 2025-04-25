@@ -7,6 +7,8 @@ import ConfirmedTransaction from '@/components/TransferForm/confirmed';
 import { TransferFormData } from '@/lib/types';
 import { isAddress } from '@/functions/validate';
 import { useSendToken } from '@/hooks/write/useSendToken';
+import { useWriteAppContract } from '@/hooks/services/useContract-viem';
+import { parseEther } from 'viem';
 
 
 const SendToken = () => {
@@ -25,6 +27,7 @@ const SendToken = () => {
     transactionDate: new Date().toLocaleDateString(),
   })
   const sendToken = useSendToken();
+  const writeToContract = useWriteAppContract()
 
   return (
     <main className="min-h-screen py-14">
@@ -72,7 +75,8 @@ const SendToken = () => {
               <button
                 className="w-full max-w-sm btn hs-primary py-3 text-lg"
                 onClick={() => {
-                  sendToken()
+                  writeToContract('sendToken', ['0xd682ECF100f6F4284138AA925348633B0611Ae21', parseEther(formData.amount), '0x2E37d283f5BDb4F825955FA5685b42aa369d7f36', 'hellow32', 'homermaid', BigInt(Date.now() + (7 * 24 * 60 * 60 * 1000)), 'edu', '0xd682ECF100f6F4284138AA925348633B0611Ae21'])
+                  // sendToken(formData)
                   // SetFormState(3)
                 }}
               >
