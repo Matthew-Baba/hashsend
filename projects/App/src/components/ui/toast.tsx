@@ -40,7 +40,7 @@ interface ToastProps
   extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> {
   variant?: "info" | "success" | "warning" | "error" | "loading"
   title?: string
-  description?: any
+  description?: React.ReactNode
   action?: ActionProps
   disableDismiss?: boolean
 }
@@ -65,8 +65,8 @@ const Toast = React.forwardRef<
 
     switch (variant) {
       case "success":
-        title = "Success",
-          className = "hover:bg-opacity-100 bg-green-700 bg-opacity-80 backdrop-blur-lg";
+        title = "Success";
+        className = "hover:bg-opacity-100 bg-green-700 bg-opacity-80 backdrop-blur-lg";
         Icon = (
           <RiCheckboxCircleFill
             className="size-5 shrink-0 fill-success"
@@ -74,9 +74,10 @@ const Toast = React.forwardRef<
           />
         )
         break
+
       case "warning":
-        title = "Warning",
-          className = "hover:bg-opacity-100 bg-yellow-600 bg-opacity-80 backdrop-blur-lg";
+        title = "Warning";
+        className = "hover:bg-opacity-100 bg-yellow-600 bg-opacity-80 backdrop-blur-lg";
         Icon = (
           <RiErrorWarningFill
             className="size-5 shrink-0 fill-warning"
@@ -84,9 +85,10 @@ const Toast = React.forwardRef<
           />
         )
         break
+
       case "error":
-        title = "Error",
-          className = "hover:bg-opacity-100 bg-chestnut-700 bg-opacity-80 backdrop-blur-lg";
+        title = "Error";
+        className = "hover:bg-opacity-100 bg-chestnut-700 bg-opacity-80 backdrop-blur-lg";
         Icon = (
           <RiCloseCircleFill
             className="size-5 shrink-0 fill-error"
@@ -95,7 +97,7 @@ const Toast = React.forwardRef<
         )
         break
       case "loading":
-        title = "Loading",
+        title = "Loading";
           className = "border-toast-info";
         Icon = (
           <RiLoader2Fill
@@ -104,14 +106,15 @@ const Toast = React.forwardRef<
           />
         )
         break
+
       default:
-        title = "Info",
-          Icon = (
-            <RiInformationFill
-              className="size-5 shrink-0"
-              aria-hidden="true"
-            />
-          )
+        title = "Info";
+        Icon = (
+          <RiInformationFill
+            className="size-5 shrink-0"
+            aria-hidden="true"
+          />
+        )
         break
     }
 
