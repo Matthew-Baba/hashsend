@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { LayoutDashboard, Send, FileClock, Menu, X } from 'lucide-react'
+import { LayoutDashboard, Send, FileClock, Menu, X, HandCoins } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { ConnectWalletButton } from '../ConnectWalletButton'
 import { useState } from 'react'
@@ -17,6 +17,11 @@ const menuItems = [
     name: 'Transfer',
     icon: <Send />,
     href: '/transfer'
+  },
+  {
+    name: 'Claim',
+    icon: <HandCoins />,
+    href: '/claim'
   },
   {
     name: 'History',
@@ -75,7 +80,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
           <ConnectWalletButton customClass="py-2.5 px-4 text-base" />
         </section>
 
-        <section className="h-screen p-8 pb-40 overflow-y-auto">
+        <section className="h-screen p-4 sm:p-8 pb-40 overflow-y-auto">
           {children}
         </section>
       </aside>
