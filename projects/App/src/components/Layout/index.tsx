@@ -36,7 +36,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="bg-shark-50 h-screen flex items-center justify-center overflow-hidden relative">
-      <aside className={`h-screen w-64 bg-white overflow-hidden sm:block hidden`}>
+      <aside className={`h-screen w-64 paper overflow-hidden sm:block hidden`}>
         <Link href="/" className="flex items-center gap-2 px-4 py-4">
           <Image src="/img/hashsend.svg" alt="HashSend Logo" width={40} height={40} />
           <h1 className="font-extrabold text-2xl">HashSend</h1>
@@ -44,7 +44,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
         <section className="space-y-2 mt-8">
           {menuItems.map((item) => (
-            <Link key={item.name} href={item.href} className={`group relative flex items-center gap-x-6 rounded-lg p-4 hover:bg-turquoise-blue-50 mx-3 ${location === item.href && 'bg-turquoise-blue-100'}`}>
+            <Link key={item.name} href={item.href} className={`group relative flex items-center gap-x-6 rounded-lg p-4 menu-hover mx-3 ${location === item.href && 'bg-turquoise-blue-100'}`}>
               {item.icon}
               <span className={`font-semibold ${location === item.href && 'text-turquoise-blue-900'}`}>{item.name}</span>
             </Link>
@@ -54,7 +54,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
       {/* MOBILE NAV */}
       <aside className={`h-screen w-screen flex bg-black/30 overflow-hidden sm:hidden transition-all duration-300 absolute top-0 left-0 ${openMenu ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className={`h-screen w-64 bg-white overflow-hidden`}>
+        <div className={`h-screen w-64 paper overflow-hidden`}>
           <Link href="/" className="flex items-center gap-2 px-4 py-4">
             <Image src="/img/hashsend.svg" alt="HashSend Logo" width={40} height={40} />
             <h1 className="font-extrabold text-2xl">HashSend</h1>
@@ -62,7 +62,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
           <section className="space-y-2 mt-8">
             {menuItems.map((item) => (
-              <Link key={item.name} href={item.href} className={`group relative flex items-center gap-x-6 rounded-lg p-4 hover:bg-turquoise-blue-50 mx-3 ${location === item.href && 'bg-turquoise-blue-100'}`}>
+              <Link key={item.name} href={item.href} className={`group relative flex items-center gap-x-6 rounded-lg p-4 menu-hover mx-3 ${location === item.href && 'bg-turquoise-blue-100'}`}>
                 {item.icon}
                 <span className={`font-semibold ${location === item.href && 'text-turquoise-blue-900'}`}>{item.name}</span>
               </Link>
@@ -74,7 +74,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       </aside>
 
       <aside className="flex-1 h-screen">
-        <section className="flex items-center justify-between sm:justify-end bg-white p-4">
+        <section className="flex items-center justify-between sm:justify-end paper p-4">
           <Menu className="cursor-pointer sm:hidden" onClick={() => setOpenMenu(true)} />
 
           <ConnectWalletButton customClass="py-2.5 px-4 text-base" />

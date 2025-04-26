@@ -41,6 +41,14 @@
     @apply text-zinc-500;
   }
 
+  .menu-hover {
+    @apply hover:bg-turquoise-blue-50;
+  }
+
+  .paper {
+    @apply bg-white;
+  }
+
   .input-box {
     @apply w-full px-3 py-2.5 rounded bg-white border border-gray-300 text-black outline-none focus:border-gray-400
   }
