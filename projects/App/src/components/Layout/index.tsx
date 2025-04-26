@@ -6,6 +6,7 @@ import { LayoutDashboard, Send, FileClock, Menu, X, HandCoins } from 'lucide-rea
 import { usePathname } from 'next/navigation'
 import { ConnectWalletButton } from '../ConnectWalletButton'
 import { useState } from 'react'
+import Footer from '../Footer'
 
 const menuItems = [
   {
@@ -36,20 +37,22 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="bg-shark-50 h-screen flex items-center justify-center overflow-hidden relative">
-      <aside className={`h-screen w-64 paper overflow-hidden sm:block hidden`}>
-        <Link href="/" className="flex items-center gap-2 px-4 py-4">
+      <aside className={`h-screen w-64 paper overflow-hidden hidden sm:flex flex-col`}>
+        <Link href="/" className="flex items-center gap-2 p-4">
           <Image src="/img/hashsend.svg" alt="HashSend Logo" width={40} height={40} />
           <h1 className="font-extrabold text-2xl">HashSend</h1>
         </Link>
 
-        <section className="space-y-2 mt-8">
+        <section className="flex-1 space-y-2 mt-8 px-3">
           {menuItems.map((item) => (
-            <Link key={item.name} href={item.href} className={`group relative flex items-center gap-x-6 rounded-lg p-4 menu-hover mx-3 ${location === item.href && 'bg-turquoise-blue-100'}`}>
+            <Link key={item.name} href={item.href} className={`group relative flex items-center gap-x-6 rounded-lg p-4 menu-hover ${location === item.href && 'bg-turquoise-blue-100'}`}>
               {item.icon}
               <span className={`font-semibold ${location === item.href && 'text-turquoise-blue-900'}`}>{item.name}</span>
             </Link>
           ))}
         </section>
+
+        <Footer />
       </aside>
 
       {/* MOBILE NAV */}
