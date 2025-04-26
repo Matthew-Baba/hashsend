@@ -18,11 +18,6 @@ const menuItems = [
     icon: <Send />,
     href: '/transfer'
   },
-  // {
-  //   name: 'Claim',
-  //   icon: <Send />,
-  //   href: '/claim'
-  // },
   {
     name: 'History',
     icon: <FileClock />,
@@ -35,7 +30,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const [openMenu, setOpenMenu] = useState(false)
 
   return (
-    <div className="bg-stone-50 h-screen flex items-center justify-center overflow-hidden relative">
+    <div className="bg-shark-50 h-screen flex items-center justify-center overflow-hidden relative">
       <aside className={`h-screen w-64 bg-white overflow-hidden sm:block hidden`}>
         <Link href="/" className="flex items-center gap-2 px-4 py-4">
           <Image src="/img/hashsend.svg" alt="HashSend Logo" width={40} height={40} />
