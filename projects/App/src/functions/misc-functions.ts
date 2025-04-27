@@ -1,3 +1,5 @@
+import { errorCodeMessages } from "@/lib/metamask-error-codes";
+
 
 export const calculateTimeLeft = (timestamp: number) => {
   const difference = timestamp * 1000 - Date.now();
@@ -51,7 +53,11 @@ export const copyToClipboard = async (textToCopy: string) => {
   return true;
 };
 
-export const extractErrorMessage = (error: { data?: { message?: string }; message?: string }) => {
+export const extractErrorMessage = (error: { data?: { message?: string, code?: string }; message?: string, code?: string }) => {
+  if (error?.code && errorCodeMessages[error.code as keyof typeof errorCodeMessages]) {
+    return errorCodeMessages[error.code as keyof typeof errorCodeMessages];
+  }
+
   // Check for specific contract revert error
   if (error?.data?.message) {
     return error.data.message;
