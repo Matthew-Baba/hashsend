@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Web3Provider } from "@/providers/Web3Provider";
 import RecoilRootProvider from "@/providers/RecoilRootProvider";
+import { ToastContainer } from "react-toastify";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +33,11 @@ export default function RootLayout({
         <RecoilRootProvider>
           <Web3Provider>
             {children}
+
+            <Toaster />
+            <ToastContainer
+              position="bottom-right"
+            />
           </Web3Provider>
         </RecoilRootProvider>
       </body>
