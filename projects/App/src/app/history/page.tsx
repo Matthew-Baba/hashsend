@@ -1,11 +1,16 @@
 "use client"
+import PlaceholderCard from "@/components/cards/PlaceholderCard";
 import AppLayout from "@/components/Layout";
+import AllTransactions from "@/components/pages/AllTransactions";
+import ReceivedTransactions from "@/components/pages/ReceivedTransactions";
+import SentTransactions from "@/components/pages/SentTransactions";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { Suspense } from "react";
 
 export default function Home() {
 
@@ -25,83 +30,27 @@ export default function Home() {
           </TabsList>
 
           <TabsContent value="all" className="space-y-2 paper p-4 sm:p-8 rounded-lg min-h-80">
-            <h3 className="font-semibold text-xl">Recent Transactions</h3>
+            <h3 className="font-semibold text-xl">All Transactions</h3>
 
-            <div className="space-y-2 paper rounded-lg">
-              <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200">
-                <div className="">
-                  <span className={`font-medium`}>Received USDT</span>
-
-                  <div className="flex items-center gap-3">
-                    <h6 className="text-sm">0x32....923EfC</h6>
-                    <span className="text-green-700 text-xs bg-green-100 px-2.5 rounded-full py-0.5">Claimed</span>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <h6 className={`font-medium text-green-600`}>+109</h6>
-                  <span className="text-zinc-500 text-sm">2025-04-23 23:32:56</span>
-                </div>
-              </fieldset>
-
-              <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200">
-                <div className="">
-                  <span className={`font-medium`}>Sent USDT</span>
-
-                  <div className="flex items-center gap-3">
-                    <h6 className="text-sm">0x32....923EfC</h6>
-                    <span className="text-red-700 text-xs bg-red-100 px-2.5 rounded-full py-0.5">Refunded</span>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <h6 className={`font-medium text-red-600`}>-23</h6>
-                  <span className="text-zinc-500 text-sm">2025-04-23 23:32:56</span>
-                </div>
-              </fieldset>
-            </div>
+            <Suspense fallback={<PlaceholderCard />}>
+              <AllTransactions />
+            </Suspense>
           </TabsContent>
 
           <TabsContent value="sent" className="space-y-2 paper p-4 sm:p-8 rounded-lg min-h-80">
-            Lorem ipsum dolor sit amet, consectetur illo quas modi ullam vitae amet accusamus beatae dicta adipisci nisi soluta laudantium qui voluptate necessitatibus.
+            <h3 className="font-semibold text-xl">Sent Transactions</h3>
+
+            <Suspense fallback={<PlaceholderCard />}>
+              <SentTransactions />
+            </Suspense>
           </TabsContent>
 
           <TabsContent value="claimed" className="space-y-2 paper p-4 sm:p-8 rounded-lg min-h-80">
             <h3 className="font-semibold text-xl">Recent Transactions</h3>
 
-            <div className="space-y-2 paper rounded-lg">
-              <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200 cursor-pointer">
-                <div className="">
-                  <span className={`font-medium`}>Received USDT</span>
-
-                  <div className="flex items-center gap-3">
-                    <h6 className="text-sm">0x32....923EfC</h6>
-                    <span className="text-blue-700 text-xs bg-blue-100 px-2.5 rounded-full py-0.5">Pending</span>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <h6 className={`font-medium text-green-600`}>+109</h6>
-                  <span className="text-zinc-500 text-sm">2025-04-23 23:32:56</span>
-                </div>
-              </fieldset>
-
-              <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200 cursor-pointer">
-                <div className="">
-                  <span className={`font-medium`}>Received USDC</span>
-
-                  <div className="flex items-center gap-3">
-                    <h6 className="text-sm">0x2e....A2d854b</h6>
-                    <span className="text-blue-700 text-xs bg-blue-100 px-2.5 rounded-full py-0.5">Pending</span>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <h6 className={`font-medium text-green-600`}>+23</h6>
-                  <span className="text-zinc-500 text-sm">2025-04-23 23:32:56</span>
-                </div>
-              </fieldset>
-            </div>
+            <Suspense fallback={<PlaceholderCard />}>
+              <ReceivedTransactions />
+            </Suspense>
           </TabsContent>
         </Tabs>
       </main>
