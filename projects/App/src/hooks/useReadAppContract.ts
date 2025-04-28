@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useContract } from "./services/useContract";
-import { TransactionType } from "@/lib/types";
+import { TransactionCountType, TransactionType } from "@/lib/types";
 import { placeholderClaims } from "@/lib/utils";
 
 export const useUserPendingClaims = () => {
@@ -33,7 +33,6 @@ export const useUserPendingClaims = () => {
           timestamp: claim[6],
         }))
 
-        console.log('sortedClaims', sortedClaims)
         setPendingClaims(sortedClaims);
       } catch (error) {
         console.error("Error fetching pending claims:", error);
@@ -73,7 +72,6 @@ export function useAllTransactionHistory() {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
         }
 
-        console.log('sortedTransactions', sortedTransactions)
         setAllTransactions(sortedTransactions);
       } catch (error) {
         console.error("Error fetching pending claims:", error);
@@ -113,7 +111,6 @@ export function useSentTransactionHistory() {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
         }
 
-        console.log('sortedTransactions', sortedTransactions)
         setSentTransactions(sortedTransactions);
       } catch (error) {
         console.error("Error fetching pending claims:", error);
@@ -153,7 +150,6 @@ export function useReceivedTransactionHistory() {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
         }
 
-        console.log('sortedTransactions', sortedTransactions)
         setClaimedTransactions(sortedTransactions);
       } catch (error) {
         console.error("Error fetching pending claims:", error);
@@ -164,4 +160,53 @@ export function useReceivedTransactionHistory() {
   }, [address, contract])
 
   return !claimedTransactions?.length ? loadingTransactions : claimedTransactions;
+}
+
+export function useTransactionCount() {
+  const { address } = useAccount();
+  const contract = useContract();
+  const [allTransactions, setAllTransactions] = useState<TransactionCountType>();
+
+  useEffect(() => {
+    const fetchAllTransactions = async () => {
+      if (!address || !contract) return;
+
+      try {
+        const transactions = await contract.getAllUserTransactions();
+
+        const sentTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) !== 2));
+        const receivedTransactions = [...transactions]?.filter((transaction) => (transaction[0] !== address && Number(BigInt(transaction[5])) === 1));
+        const pendingTransactions = [...transactions]?.filter((transaction) => Number(BigInt(transaction[5])) === 0);
+
+        const totalSentTransactions = sentTransactions?.length || 0;
+        const totalReceivedTransactions = receivedTransactions?.length || 0;
+        const totalPendingTransactions = pendingTransactions?.length || 0;
+        const totalTransactions = [...transactions]?.length || 0;
+
+        const totalUnclaimedAmount = [...sentTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalClaimedAmount = [...receivedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalPendingAmount = [...pendingTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalAmount = [...transactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+
+        const transactionCount = {
+          totalSentTransactions,
+          totalReceivedTransactions,
+          totalPendingTransactions,
+          totalTransactions,
+          totalUnclaimedAmount,
+          totalClaimedAmount,
+          totalPendingAmount,
+          totalAmount,
+        }
+
+        setAllTransactions(transactionCount);
+      } catch (error) {
+        console.error("Error fetching pending claims:", error);
+      }
+    }
+
+    fetchAllTransactions();
+  }, [address, contract])
+
+  return allTransactions;
 }
