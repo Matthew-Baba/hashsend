@@ -7,6 +7,7 @@ import { Currency, CurrencyAmount, Fraction, JSBI, Price } from '@swapsicledex/s
 // @ts-expect-error TYPE NEEDS FIXING
 import Numeral from 'numeral'
 import { truncateValue } from './misc-functions'
+import moment from "moment";
 
 // @ts-expect-error TYPE NEEDS FIXING
 export const capitalize = (s) => {
@@ -205,11 +206,9 @@ export function formatDateAgo(date: Date) {
   return `${Math.floor(secondsAgo / 31536000)} Year${secondsAgo / 63072000 >= 1 ? 's' : ''} Ago`
 }
 
-export const formatDate = (date: Date) =>
-  `${date.toLocaleDateString('default', { month: 'short' })} ${date.getDate()}, '${String(date.getFullYear()).replace(
-    '20',
-    ''
-  )}`
+export const formatDate = (timestamp: number) => {
+  return moment(timestamp).format("YYYY-MM-DD HH:mm:ss");
+}
 
 export const formatToBigInt = (amount: string, tokenDecimal: number) => {
   const amountToConvert = parseUnits(amount, tokenDecimal.toString())?._hex

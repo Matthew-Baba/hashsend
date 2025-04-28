@@ -1,4 +1,5 @@
 import { errorCodeMessages } from "@/lib/metamask-error-codes";
+import { customAlphabet } from "nanoid";
 
 
 export const calculateTimeLeft = (timestamp: number) => {
@@ -81,3 +82,11 @@ export const extractErrorMessage = (error: { data?: { message?: string, code?: s
   // Fallback to MetaMask error codes
   return "Transaction failed";
 };
+
+export const generateCouponCode = () => {
+  const generateCode = customAlphabet('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 10);
+  const couponCode = generateCode();
+
+  console.log("Generated coupon code:", couponCode);
+  return couponCode;
+}

@@ -39,3 +39,13 @@ export const hasErrorInput = [
   // ring color
   "ring-red-200 dark:ring-red-700/30",
 ]
+
+export const placeholderClaims = {
+  sender: "",
+  recipient: "",
+  amount: 0,
+  couponCode: "",
+  encryptedPassword: "",
+  status: 0,
+  timestamp: 0,
+}
