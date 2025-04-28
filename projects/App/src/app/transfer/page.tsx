@@ -1,6 +1,7 @@
 "use client";
 
 import AppLayout from '@/components/Layout'
+import { Button } from '@/components/ui/button';
 import { useWriteToContract } from '@/hooks/useWriteToContract'
 import { ShieldCheck } from 'lucide-react'
 import { useState } from 'react'
@@ -34,7 +35,7 @@ const Transfers = () => {
 
               <div className="space-x-1.5 text-sm">
                 <span className="faded-text">Balance:</span>
-                <span className="font-medium">{data?.formatted} {data?.symbol}</span>
+                <span className="font-medium">{data?.formatted || 0} {data?.symbol}</span>
               </div>
             </fieldset>
 
@@ -53,11 +54,19 @@ const Transfers = () => {
             </fieldset>
 
             <fieldset className="pt-4">
-              <button className="btn hs-primary w-full flex items-center place-content-center gap-x-2 py-3"
-                onClick={() => { sendToken(amount, recipientAddress, password) }}
+              <Button className="btn hs-primary w-full flex items-center place-content-center gap-x-2 py-3"
+                onClick={() => {
+                  sendToken(amount, recipientAddress, password).then((res) => {
+                    if (res) {
+                      setAmount('')
+                      setRecipientAddress('')
+                      setPassword('')
+                    }
+                  })
+                }}
               >
                 <ShieldCheck /> Send Encrypted Transfer
-              </button>
+              </Button>
             </fieldset>
           </aside>
 

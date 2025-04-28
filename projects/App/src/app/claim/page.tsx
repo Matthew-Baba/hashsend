@@ -1,7 +1,16 @@
+"use client";
 
+import PendingClaimsCard from '@/components/cards/PendingClaimsCard';
 import AppLayout from '@/components/Layout'
+import { Button } from '@/components/ui/button'
+import { useUserPendingClaims } from '@/hooks/useReadAppContract';
+import { useState } from 'react';
 
 const Claim = () => {
+  const [couponCode, setCouponCode] = useState('');
+  const [password, setPassword] = useState('');
+  const pendingClaims = useUserPendingClaims();
+
   return (
     <AppLayout>
       <main className="app-width space-y-8 pt-2">
@@ -17,16 +26,23 @@ const Claim = () => {
             <div className="space-y-6 mt-4">
               <fieldset className="">
                 <span className="font-medium faded-text">Coupon, Sender&apos;s Address or Transaction ID</span>
-                <input type="text" className="input-box" placeholder="Coupon, Sender&apos;s Address or Transaction ID" />
+                <input type="text" className="input-box" placeholder="Coupon, Sender&apos;s Address or Transaction ID"
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  value={couponCode}
+                />
               </fieldset>
 
               <fieldset className="">
                 <span className="font-medium faded-text">Password (required if set by sender)</span>
-                <input type="text" className="input-box" placeholder="Enter password to approve claim" />
+                <input type="text" className="input-box" placeholder="Enter password to approve claim"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                />
               </fieldset>
 
               <fieldset className="pt-4">
-                <button className="btn hs-primary w-full py-3">Claim Transferred Token</button>
+                <Button className="btn hs-primary w-full py-3"
+                >Claim Transferred Token</Button>
               </fieldset>
             </div>
           </aside>
@@ -38,37 +54,15 @@ const Claim = () => {
             </div>
 
             <div className="space-y-2">
-              <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200 cursor-pointer">
+              {pendingClaims?.length ?
+                pendingClaims?.map((claim, index) => (
+                  <PendingClaimsCard key={index} claim={claim} />
+                ))
+              :
                 <div className="">
-                  <span className={`font-medium`}>Received USDT</span>
-
-                  <div className="flex items-center gap-3">
-                    <h6 className="text-sm">0x32....923EfC</h6>
-                    <span className="text-blue-700 text-xs bg-blue-100 px-2.5 rounded-full py-0.5">Pending</span>
-                  </div>
+                  No claims
                 </div>
-
-                <div className="text-right">
-                  <h6 className={`font-medium text-green-600`}>+109</h6>
-                  <span className="text-zinc-500 text-sm">2025-04-23 23:32:56</span>
-                </div>
-              </fieldset>
-
-              <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200 cursor-pointer">
-                <div className="">
-                  <span className={`font-medium`}>Received USDC</span>
-
-                  <div className="flex items-center gap-3">
-                    <h6 className="text-sm">0x2e....A2d854b</h6>
-                    <span className="text-blue-700 text-xs bg-blue-100 px-2.5 rounded-full py-0.5">Pending</span>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <h6 className={`font-medium text-green-600`}>+23</h6>
-                  <span className="text-zinc-500 text-sm">2025-04-23 23:32:56</span>
-                </div>
-              </fieldset>
+              }
             </div>
           </aside>
         </section>
