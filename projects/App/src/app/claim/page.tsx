@@ -1,6 +1,6 @@
 "use client";
 
-import PendingClaimsCard from '@/components/cards/PendingClaimsCard';
+import TransactionCard from '@/components/cards/TransactionCard';
 import AppLayout from '@/components/Layout'
 import { Button } from '@/components/ui/button'
 import { useUserPendingClaims } from '@/hooks/useReadAppContract';
@@ -56,7 +56,7 @@ const Claim = () => {
             <div className="space-y-2">
               {pendingClaims?.length ?
                 pendingClaims?.map((claim, index) => (
-                  <PendingClaimsCard key={index} claim={claim} />
+                  <TransactionCard key={index} transaction={claim} />
                 ))
               :
                 <div className="">
