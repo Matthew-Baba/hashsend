@@ -22,7 +22,7 @@
   }
 
   .hs-secondary {
-    @apply bg-white/10 text-white border border-gray-400 hover:bg-gray-700/30;
+    @apply bg-shark-700 text-white;
   }
 
   .hs-text-gradient {

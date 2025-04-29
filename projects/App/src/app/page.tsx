@@ -4,8 +4,10 @@ import AppLayout from "@/components/Layout";
 import { useAllTransactionHistory, useTransactionCount } from "@/hooks/useReadAppContract";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useAccount } from "wagmi";
 
 export default function Home() {
+  const { address } = useAccount();
   const allTransactions = useAllTransactionHistory();
   const transactionInfo = useTransactionCount();
 
@@ -14,7 +16,7 @@ export default function Home() {
       <main className="app-width space-y-8">
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <h3 className="font-medium mb-3">Amount Sent</h3>
+            <h3 className="font-medium mb-3">Total Sent</h3>
 
             <div className="text-4xl font-bold hs-text-gradient">{transactionInfo?.totalSentTransactions}</div>
 
@@ -47,18 +49,26 @@ export default function Home() {
         <section className="space-y-4">
           <h3 className="font-semibold text-xl">Recent Transactions</h3>
 
-          <div className="space-y-2">
-            {allTransactions?.slice(0, 6)?.map((transaction, index) => (
-              <TransactionCard key={index} transaction={transaction} />
-            ))}
-          </div>
+          {!address ?
+            <div className="flex items-center justify-center min-h-40">
+              Wallet is not connected. Please connect your wallet to view transactions.
+            </div>
+          :
+            <>
+              <div className="space-y-2">
+                {allTransactions?.slice(0, 6)?.map((transaction, index) => (
+                  <TransactionCard key={index} transaction={transaction} />
+                ))}
+              </div>
 
-          <div className="">
-            <Link href="/history" className="flex items-center gap-2 text-turquoise-blue-500 font-semibold">
-              <span>View all transactions</span>
-              <ArrowRight size={16} className="text-turquoise-blue-500" />
-            </Link>
-          </div>
+              <div className="">
+                <Link href="/history" className="flex items-center gap-2 text-turquoise-blue-500 font-semibold">
+                  <span>View all transactions</span>
+                  <ArrowRight size={16} className="text-turquoise-blue-500" />
+                </Link>
+              </div>
+            </>
+          }
         </section>
       </main>
     </AppLayout>
