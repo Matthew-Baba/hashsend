@@ -45,8 +45,8 @@ export const truncateValue = (valueToTruncate: number, decimalPlaces: number) =>
   return truncated;
 };
 
-export const convertToDecimalValue = (SCValue: number, tokenDecimal: number) => {
-  return SCValue / Math.pow(10, Number(tokenDecimal));
+export const convertToDecimalValue = (SCValue: number) => {
+  return SCValue / Math.pow(10, 18);
 };
 
 export const copyToClipboard = async (textToCopy: string) => {

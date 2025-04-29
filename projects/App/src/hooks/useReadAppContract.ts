@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useContract } from "./services/useContract";
 import { TransactionCountType, TransactionType } from "@/lib/types";
 import { placeholderClaims } from "@/lib/utils";
+import { toast } from "react-toastify";
 
 export const useUserPendingClaims = () => {
   const { address } = useAccount();
@@ -209,4 +210,42 @@ export function useTransactionCount() {
   }, [address, contract])
 
   return allTransactions;
+}
+
+export const useTransactionDetails = () => {
+  const contract = useContract();
+
+  const fetchTransactionDetails = useCallback(
+    async (transactionIdentifier: string) => {
+      try {
+        const transaction: TransactionType[] = await contract?.getTransactionDetails(transactionIdentifier);
+
+        const transactionDetail = {
+          sender: transaction[0],
+          recipient: transaction[1],
+          amount: transaction[2],
+          couponCode: transaction[3],
+          encryptedPassword: transaction[4],
+          status: transaction[5],
+          timestamp: transaction[6],
+        }
+
+        return transactionDetail;
+      } catch (error) {
+        console.error("Error fetching pending claims:", error);
+        toast.error("Error fetching transaction or incorrect coupon code.")
+        return {
+          sender: "",
+          recipient: "",
+          amount: 0,
+          couponCode: "",
+          encryptedPassword: "",
+          status: 0,
+          timestamp: 0,
+        };
+      }
+    }, [contract]
+  )
+
+  return fetchTransactionDetails;
 }

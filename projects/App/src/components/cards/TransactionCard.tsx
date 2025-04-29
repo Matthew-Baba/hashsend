@@ -12,7 +12,7 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   if (!transaction?.sender) return <PlaceholderCard />;
 
   const status = TxStatus[Number(BigInt(transaction?.status))]
-  const amount = convertToDecimalValue(Number(BigInt(transaction?.amount)), Number(data?.decimals))
+  const amount = convertToDecimalValue(Number(BigInt(transaction?.amount)))
   const statusColor = ["text-blue-700 bg-blue-100", "bg-green-100 text-green-700", "text-red-700 bg-red-100"][Number(BigInt(transaction?.status))]
   const isDebit = transaction?.sender === address
 
