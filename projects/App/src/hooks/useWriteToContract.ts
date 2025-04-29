@@ -67,7 +67,37 @@ export const useWriteToContract = () => {
     }, [address, contract, explorerURL, setIsLoading]
   )
 
+  const recallTransaction = useCallback(
+    async (couponCode: string) => {
+      setIsLoading(true)
+
+      try {
+        const recallTransactionCall = await contract?.reclaimToken(couponCode);
+        const recallTransactionCallReceipt = await recallTransactionCall?.wait();
+
+        customToast({
+          variant: "success",
+          description: "Transaction successfully executed",
+          action: {url: `${explorerURL}/tx/${recallTransactionCallReceipt?.hash || recallTransactionCallReceipt?.transactionHash}`, label: "View in explorer"}
+        })
+
+        console.log("Transaction receipt:", recallTransactionCallReceipt);
+
+        return true
+      } catch (error) {
+        console.error("Error recalling transaction:", error);
+        const errorMessage = extractErrorMessage(error instanceof Error ? error : new Error("Unknown error"));
+        toast.error(errorMessage)
+        return false
+      } finally {
+        setIsLoading(false)
+      }
+    }, [contract, explorerURL, setIsLoading]
+  )
+
+
   return {
-    sendToken
+    sendToken,
+    recallTransaction
   }
 }

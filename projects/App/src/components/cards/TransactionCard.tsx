@@ -4,10 +4,13 @@ import PlaceholderCard from './PlaceholderCard';
 import { formatDate, shortenAddress } from '@/functions/format';
 import { convertToDecimalValue } from '@/functions/misc-functions';
 import { useAccount, useBalance } from 'wagmi';
+import { Button } from '../ui/button';
+import { useWriteToContract } from '@/hooks/useWriteToContract';
 
 const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   const { address } = useAccount();
-  const { data } = useBalance({address})
+  const { data } = useBalance({ address })
+  const { recallTransaction } = useWriteToContract()
 
   if (!transaction?.sender) return <PlaceholderCard />;
 
@@ -29,7 +32,13 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
 
       <div className="text-right">
         <h6 className={`font-medium ${isDebit ? "text-red-600" : "text-green-600"}`}>{isDebit ? "-" : "+" }{amount}</h6>
-        <span className="text-zinc-500 text-sm">{formatDate(Number(BigInt(transaction?.timestamp)) * 1000)}</span>
+        <h6 className="text-zinc-500 text-sm">{formatDate(Number(BigInt(transaction?.timestamp)) * 1000)}</h6>
+
+        {isDebit && status === "Pending" &&
+          <Button className="btn hs-secondary text-xs" onClick={() => recallTransaction(transaction?.couponCode)}>
+            Recall Transfer
+          </Button>
+        }
       </div>
     </fieldset>
   )
