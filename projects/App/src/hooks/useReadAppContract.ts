@@ -24,15 +24,7 @@ export const useUserPendingClaims = () => {
           setLoadingClaims(prev => (prev.length > 0 ? [] : prev));
         }
 
-        const sortedClaims = [...claims]?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((claim) => ({
-          sender: claim[0],
-          recipient: claim[1],
-          amount: claim[2],
-          couponCode: claim[3],
-          encryptedPassword: claim[4],
-          status: claim[5],
-          timestamp: claim[6],
-        }))
+        const sortedClaims = [...claims]?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((claim) => (claim))
 
         setPendingClaims(sortedClaims);
       } catch (error) {
@@ -59,15 +51,7 @@ export function useAllTransactionHistory() {
       try {
         const transactions = await contract.getAllUserTransactions();
 
-        const sortedTransactions = [...transactions]?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => ({
-          sender: transaction[0],
-          recipient: transaction[1],
-          amount: transaction[2],
-          couponCode: transaction[3],
-          encryptedPassword: transaction[4],
-          status: transaction[5],
-          timestamp: transaction[6],
-        }))
+        const sortedTransactions = [...transactions]?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
 
         if(sortedTransactions?.length === 0) {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
@@ -98,15 +82,7 @@ export function useSentTransactionHistory() {
       try {
         const transactions = await contract.getAllUserTransactions();
 
-        const sortedTransactions = [...transactions]?.filter((transaction) => transaction[0] === address)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => ({
-          sender: transaction[0],
-          recipient: transaction[1],
-          amount: transaction[2],
-          couponCode: transaction[3],
-          encryptedPassword: transaction[4],
-          status: transaction[5],
-          timestamp: transaction[6],
-        }))
+        const sortedTransactions = [...transactions]?.filter((transaction) => transaction[0] === address)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
 
         if(sortedTransactions?.length === 0) {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
@@ -137,15 +113,7 @@ export function useReceivedTransactionHistory() {
       try {
         const transactions = await contract.getAllUserTransactions();
 
-        const sortedTransactions = [...transactions]?.filter((transaction) => Number(BigInt(transaction[5])) !== 0)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => ({
-          sender: transaction[0],
-          recipient: transaction[1],
-          amount: transaction[2],
-          couponCode: transaction[3],
-          encryptedPassword: transaction[4],
-          status: transaction[5],
-          timestamp: transaction[6],
-        }))
+        const sortedTransactions = [...transactions]?.filter((transaction) => Number(BigInt(transaction[5])) !== 0)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
 
         if(sortedTransactions?.length === 0) {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
@@ -232,17 +200,7 @@ export const useTransactionDetails = () => {
       try {
         const transaction: TransactionType[] = await contract?.getTransactionDetails(transactionIdentifier);
 
-        const transactionDetail = {
-          sender: transaction[0],
-          recipient: transaction[1],
-          amount: transaction[2],
-          couponCode: transaction[3],
-          encryptedPassword: transaction[4],
-          status: transaction[5],
-          timestamp: transaction[6],
-        }
-
-        return transactionDetail;
+        return transaction;
       } catch (error) {
         console.error("Error fetching pending claims:", error);
         toast.error("Error fetching transaction or incorrect coupon code.")

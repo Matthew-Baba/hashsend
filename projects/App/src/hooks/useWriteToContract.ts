@@ -4,7 +4,7 @@ import { useContract } from "./services/useContract"
 import { useCallback } from "react"
 import { useSetRecoilState } from "recoil"
 import { loadingState } from "@/app/state/atoms/atom"
-import { extractErrorMessage } from "@/functions/misc-functions"
+import { extractErrorMessage, generateCouponCode } from "@/functions/misc-functions"
 import { toast } from "react-toastify"
 import { toast as customToast } from "@/components/ui/use-toast"
 import { useAccount } from "wagmi"
@@ -40,11 +40,12 @@ export const useWriteToContract = () => {
         return false;
       }
 
-      const encryptedPassword = keccak256(toUtf8Bytes(password));
+      const encryptedPassword = keccak256(toUtf8Bytes(password.trim()));
+      const couponCode = generateCouponCode();
 
 
       try {
-        const sendTokenCall = await contract?.sendToken(recipientAddress, 'couponCode', encryptedPassword, {value: ethers.parseEther(amount)});
+        const sendTokenCall = await contract?.sendToken(recipientAddress, couponCode, encryptedPassword, {value: ethers.parseEther(amount)});
         const sendTokenCallReceipt = await sendTokenCall?.wait();
 
         customToast({

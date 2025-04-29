@@ -20,7 +20,7 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   const isDebit = transaction?.sender === address
 
   return (
-    <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200">
+    <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200" title={transaction?.couponCode}>
       <div className="">
         <span className={`font-medium`}>{isDebit ? "Sent" : "Received"}  {data?.symbol}</span>
 
