@@ -11,8 +11,10 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { Suspense } from "react";
+import { useAccount } from "wagmi";
 
 export default function Home() {
+  const { address } = useAccount();
 
   return (
     <AppLayout>
@@ -32,25 +34,46 @@ export default function Home() {
           <TabsContent value="all" className="space-y-2 paper p-4 sm:p-8 rounded-lg min-h-80">
             <h3 className="font-semibold text-xl">All Transactions</h3>
 
-            <Suspense fallback={<PlaceholderCard />}>
-              <AllTransactions />
-            </Suspense>
+            {address ?
+              <Suspense fallback={<PlaceholderCard />}>
+                <AllTransactions />
+              </Suspense>
+            :
+              <div className="flex flex-col items-center justify-center h-full">
+                <h3 className="text-2xl font-semibold">Connect your wallet to view transactions</h3>
+                <p className="faded-text text-sm">You need to connect your wallet to view your transaction history.</p>
+              </div>
+            }
           </TabsContent>
 
           <TabsContent value="sent" className="space-y-2 paper p-4 sm:p-8 rounded-lg min-h-80">
             <h3 className="font-semibold text-xl">Sent Transactions</h3>
 
-            <Suspense fallback={<PlaceholderCard />}>
-              <SentTransactions />
-            </Suspense>
+            {address ?
+              <Suspense fallback={<PlaceholderCard />}>
+                <SentTransactions />
+              </Suspense>
+            :
+              <div className="flex flex-col items-center justify-center h-full">
+                <h3 className="text-2xl font-semibold">Connect your wallet to view transactions</h3>
+                <p className="faded-text text-sm">You need to connect your wallet to view your transaction history.</p>
+              </div>
+            }
           </TabsContent>
 
           <TabsContent value="claimed" className="space-y-2 paper p-4 sm:p-8 rounded-lg min-h-80">
-            <h3 className="font-semibold text-xl">Recent Transactions</h3>
+            <h3 className="font-semibold text-xl">Claimed Transactions</h3>
 
-            <Suspense fallback={<PlaceholderCard />}>
-              <ReceivedTransactions />
-            </Suspense>
+            {address ?
+              <Suspense fallback={<PlaceholderCard />}>
+                <ReceivedTransactions />
+              </Suspense>
+            :
+              <div className="flex flex-col items-center justify-center h-full">
+                <h3 className="text-2xl font-semibold">Connect your wallet to view transactions</h3>
+                <p className="faded-text text-sm">You need to connect your wallet to view your transaction history.</p>
+              </div>
+            }
           </TabsContent>
         </Tabs>
       </main>

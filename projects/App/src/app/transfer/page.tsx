@@ -6,6 +6,7 @@ import { useWriteToContract } from '@/hooks/useWriteToContract'
 import { ShieldCheck } from 'lucide-react'
 import { useState } from 'react'
 import { useAccount, useBalance } from 'wagmi';
+import { ConnectWalletButton } from '@/components/ConnectWalletButton';
 
 const Transfers = () => {
   const { address } = useAccount();
@@ -54,19 +55,23 @@ const Transfers = () => {
             </fieldset>
 
             <fieldset className="pt-4">
-              <Button className="btn hs-primary w-full flex items-center place-content-center gap-x-2 py-3"
-                onClick={() => {
-                  sendToken(amount, recipientAddress, password).then((res) => {
-                    if (res) {
-                      setAmount('')
-                      setRecipientAddress('')
-                      setPassword('')
-                    }
-                  })
-                }}
-              >
-                <ShieldCheck /> Send Encrypted Transfer
-              </Button>
+              {!address ?
+                <ConnectWalletButton customClass="w-full py-3" />
+              :
+                <Button className="btn hs-primary w-full flex items-center place-content-center gap-x-2 py-3"
+                  onClick={() => {
+                    sendToken(amount, recipientAddress, password).then((res) => {
+                      if (res) {
+                        setAmount('')
+                        setRecipientAddress('')
+                        setPassword('')
+                      }
+                    })
+                  }}
+                >
+                  <ShieldCheck /> Send Encrypted Transfer
+                </Button>
+              }
             </fieldset>
           </aside>
 
