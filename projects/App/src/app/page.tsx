@@ -1,48 +1,85 @@
 "use client"
 import TransactionCard from "@/components/cards/TransactionCard";
 import AppLayout from "@/components/Layout";
+import { convertToDecimalValue } from "@/functions/misc-functions";
 import { useAllTransactionHistory, useTransactionCount } from "@/hooks/useReadAppContract";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useAccount } from "wagmi";
+import { useAccount, useBalance } from "wagmi";
 
 export default function Home() {
   const { address } = useAccount();
+  const { data } = useBalance({ address });
   const allTransactions = useAllTransactionHistory();
   const transactionInfo = useTransactionCount();
 
   return (
     <AppLayout>
-      <main className="app-width space-y-8">
-        <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <main className="app-width space-y-16">
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <h3 className="font-medium mb-3">Total Sent</h3>
-
-            <div className="text-4xl font-bold hs-text-gradient">{transactionInfo?.totalSentTransactions}</div>
-
-            <div className="mt-2 font-medium">
-              {/* <span className="text-gray-500">{transactionInfo?.totalReceivedTransactions}</span> */}
+            <div className="mb-3 -space-y-1">
+              <h3 className="font-medium">Total Sent</h3>
+              <h6 className="faded-text text-sm">Sent out transactions that have been claimed</h6>
             </div>
+
+            <div className="text-4xl font-bold hs-text-gradient">
+              {convertToDecimalValue(transactionInfo?.totalSentClaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
+            </div>
+
+            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalSentClaimedCount || 0} transactions</h6>
           </aside>
 
           <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <h3 className="font-medium mb-3">Total Claims</h3>
-
-            <div className="text-4xl font-bold hs-text-gradient">{transactionInfo?.totalReceivedTransactions}</div>
-
-            <div className="mt-2 font-medium">
-              {/* <span className="text-gray-500">{transactionInfo?.totalClaimedAmount}</span> */}
+            <div className="mb-3 -space-y-1">
+              <h3 className="font-medium">Total Received</h3>
+              <h6 className="faded-text text-sm">Received transactions you have claimed to your wallet</h6>
             </div>
+
+            <div className="text-4xl font-bold hs-text-gradient">
+              {convertToDecimalValue(transactionInfo?.totalReceivedClaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
+            </div>
+
+            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalReceivedClaimedCount} transactions</h6>
           </aside>
 
           <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <h3 className="font-medium mb-3">Pending Claims</h3>
-
-            <div className="text-4xl font-bold hs-text-gradient">{transactionInfo?.totalPendingTransactions}</div>
-
-            <div className="mt-2 font-medium">
-              {/* <span className="text-gray-500">{transactionInfo?.totalPendingAmount}</span> */}
+            <div className="mb-3 -space-y-1">
+              <h3 className="font-medium">Pending Claims</h3>
+              <h6 className="faded-text text-sm">Received transactions you have not claimed</h6>
             </div>
+
+            <div className="text-4xl font-bold hs-text-gradient">
+              {convertToDecimalValue(transactionInfo?.totalReceivedUnclaimedAmount as number) || 0}  <span className="text-sm">{data?.symbol}</span>
+            </div>
+
+            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalReceivedUnclaimedCount || 0} transactions</h6>
+          </aside>
+
+          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
+            <div className="mb-3 -space-y-1">
+              <h3 className="font-medium">Total Escrow</h3>
+              <h6 className="faded-text text-sm">Transactions you sent that are unclaimed</h6>
+            </div>
+
+            <div className="text-4xl font-bold hs-text-gradient">
+              {convertToDecimalValue(transactionInfo?.totaSentUnclaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
+            </div>
+
+            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalSentUnclaimedCount || 0} transactions</h6>
+          </aside>
+
+          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
+            <div className="mb-3 -space-y-1">
+              <h3 className="font-medium">Total Reclaims</h3>
+              <h6 className="faded-text text-sm">Transactions you sent out and recalled</h6>
+            </div>
+
+            <div className="text-4xl font-bold hs-text-gradient">
+              {convertToDecimalValue(transactionInfo?.totalSentReclaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
+            </div>
+
+            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalSentReclaimedCount || 0} transactions</h6>
           </aside>
         </section>
 

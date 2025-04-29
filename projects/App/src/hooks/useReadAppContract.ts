@@ -175,28 +175,40 @@ export function useTransactionCount() {
       try {
         const transactions = await contract.getAllUserTransactions();
 
-        const sentTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) !== 2));
-        const receivedTransactions = [...transactions]?.filter((transaction) => (transaction[0] !== address && Number(BigInt(transaction[5])) === 1));
-        const pendingTransactions = [...transactions]?.filter((transaction) => Number(BigInt(transaction[5])) === 0);
+        const sentUnclaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) !== 2));
+        const sentReclaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) === 2));
+        const sentClaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) === 1));
+        const receivedClaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] !== address && Number(BigInt(transaction[5])) === 1));
+        const receivedUnclaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] !== address && Number(BigInt(transaction[5])) === 0));
 
-        const totalSentTransactions = sentTransactions?.length || 0;
-        const totalReceivedTransactions = receivedTransactions?.length || 0;
-        const totalPendingTransactions = pendingTransactions?.length || 0;
+        const totalSentUnclaimedCount = sentUnclaimedTransactions?.length || 0;
+        const totalSentReclaimedCount = sentReclaimedTransactions?.length || 0;
+        const totalSentClaimedCount = sentClaimedTransactions?.length || 0;
+        const totalReceivedClaimedCount = receivedClaimedTransactions?.length || 0;
+        const totalReceivedUnclaimedCount = receivedUnclaimedTransactions?.length || 0;
         const totalTransactions = [...transactions]?.length || 0;
 
-        const totalUnclaimedAmount = [...sentTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
-        const totalClaimedAmount = [...receivedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
-        const totalPendingAmount = [...pendingTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totaSentUnclaimedAmount = [...sentUnclaimedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalSentReclaimedAmount = [...sentReclaimedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalSentClaimedAmount = [...sentClaimedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalReceivedClaimedAmount = [...receivedClaimedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
+        const totalReceivedUnclaimedAmount = [...receivedUnclaimedTransactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
         const totalAmount = [...transactions]?.reduce((acc, transaction) => acc + Number(BigInt(transaction[2])), 0) || 0;
 
         const transactionCount = {
-          totalSentTransactions,
-          totalReceivedTransactions,
-          totalPendingTransactions,
+          totalSentUnclaimedCount,
+          totalSentReclaimedCount,
+          totalSentClaimedCount,
+          totalReceivedClaimedCount,
+          totalReceivedUnclaimedCount,
+
+          totaSentUnclaimedAmount,
+          totalSentReclaimedAmount,
+          totalSentClaimedAmount,
+          totalReceivedClaimedAmount,
+          totalReceivedUnclaimedAmount,
+
           totalTransactions,
-          totalUnclaimedAmount,
-          totalClaimedAmount,
-          totalPendingAmount,
           totalAmount,
         }
 

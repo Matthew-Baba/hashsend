@@ -16,14 +16,18 @@ export interface TransactionType {
 }
 
 export interface TransactionCountType {
-  totalAmount: number;
-  totalClaimedAmount: number;
-  totalPendingAmount: number;
-  totalPendingTransactions: number;
-  totalReceivedTransactions: number;
-  totalSentTransactions: number;
+  totalSentUnclaimedCount: number;
+  totalSentReclaimedCount: number;
+  totalSentClaimedCount: number;
+  totalReceivedClaimedCount: number;
+  totalReceivedUnclaimedCount: number;
+  totaSentUnclaimedAmount: number;
+  totalSentReclaimedAmount: number;
+  totalSentClaimedAmount: number;
+  totalReceivedClaimedAmount: number;
+  totalReceivedUnclaimedAmount: number;
   totalTransactions: number;
-  totalUnclaimedAmount: number;
+  totalAmount: number;
 }
 
 export enum TxStatus { Pending, Claimed, Reclaimed }
