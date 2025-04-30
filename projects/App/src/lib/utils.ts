@@ -49,3 +49,20 @@ export const placeholderClaims = {
   status: 0,
   timestamp: 0,
 }
+
+export const placeholderStats = {
+  totalSentUnclaimedCount: 0,
+  totalSentReclaimedCount: 0,
+  totalSentClaimedCount: 0,
+  totalReceivedClaimedCount: 0,
+  totalReceivedUnclaimedCount: 0,
+
+  totaSentUnclaimedAmount: 0,
+  totalSentReclaimedAmount: 0,
+  totalSentClaimedAmount: 0,
+  totalReceivedClaimedAmount: 0,
+  totalReceivedUnclaimedAmount: 0,
+
+  totalTransactions: 0,
+  totalAmount: 0,
+}
