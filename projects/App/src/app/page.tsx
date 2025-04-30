@@ -1,14 +1,14 @@
 "use client"
+import DashboardCard from "@/components/cards/DashboardCard";
 import TransactionCard from "@/components/cards/TransactionCard";
 import AppLayout from "@/components/Layout";
-import { convertToDecimalValue } from "@/functions/misc-functions";
 import { useAllTransactionHistory, useTransactionCount } from "@/hooks/useReadAppContract";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useAccount, useBalance } from "wagmi";
 
 export default function Home() {
-  const { address } = useAccount();
+  const { address, isConnecting } = useAccount();
   const { data } = useBalance({ address });
   const allTransactions = useAllTransactionHistory();
   const transactionInfo = useTransactionCount();
@@ -17,70 +17,50 @@ export default function Home() {
     <AppLayout>
       <main className="app-width space-y-16">
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <div className="mb-3 -space-y-1">
-              <h3 className="font-medium">Total Sent</h3>
-              <h6 className="faded-text text-sm">Sent out transactions that have been claimed</h6>
-            </div>
+          <DashboardCard
+            isConnecting={isConnecting}
+            header={"Total Sent"}
+            tagline={"Sent out transactions that have been claimed"}
+            amount={transactionInfo?.totalSentClaimedAmount}
+            transactionCount={transactionInfo?.totalSentClaimedCount}
+            symbol={data?.symbol}
+          />
 
-            <div className="text-4xl font-bold hs-text-gradient">
-              {convertToDecimalValue(transactionInfo?.totalSentClaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
-            </div>
+          <DashboardCard
+            isConnecting={isConnecting}
+            header={"Total Received"}
+            tagline={"Received transactions you have claimed to your wallet"}
+            amount={transactionInfo?.totalReceivedClaimedAmount}
+            transactionCount={transactionInfo?.totalReceivedClaimedCount}
+            symbol={data?.symbol}
+          />
 
-            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalSentClaimedCount || 0} transactions</h6>
-          </aside>
+          <DashboardCard
+            isConnecting={isConnecting}
+            header={"Pending Claims"}
+            tagline={"Received transactions you have not claimed"}
+            amount={transactionInfo?.totalReceivedUnclaimedAmount}
+            transactionCount={transactionInfo?.totalReceivedUnclaimedCount}
+            symbol={data?.symbol}
+          />
 
-          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <div className="mb-3 -space-y-1">
-              <h3 className="font-medium">Total Received</h3>
-              <h6 className="faded-text text-sm">Received transactions you have claimed to your wallet</h6>
-            </div>
+          <DashboardCard
+            isConnecting={isConnecting}
+            header={"Total Escrow"}
+            tagline={"Transactions you sent that are unclaimed"}
+            amount={transactionInfo?.totaSentUnclaimedAmount}
+            transactionCount={transactionInfo?.totalSentUnclaimedCount}
+            symbol={data?.symbol}
+          />
 
-            <div className="text-4xl font-bold hs-text-gradient">
-              {convertToDecimalValue(transactionInfo?.totalReceivedClaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
-            </div>
-
-            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalReceivedClaimedCount || 0} transactions</h6>
-          </aside>
-
-          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <div className="mb-3 -space-y-1">
-              <h3 className="font-medium">Pending Claims</h3>
-              <h6 className="faded-text text-sm">Received transactions you have not claimed</h6>
-            </div>
-
-            <div className="text-4xl font-bold hs-text-gradient">
-              {convertToDecimalValue(transactionInfo?.totalReceivedUnclaimedAmount as number) || 0}  <span className="text-sm">{data?.symbol}</span>
-            </div>
-
-            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalReceivedUnclaimedCount || 0} transactions</h6>
-          </aside>
-
-          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <div className="mb-3 -space-y-1">
-              <h3 className="font-medium">Total Escrow</h3>
-              <h6 className="faded-text text-sm">Transactions you sent that are unclaimed</h6>
-            </div>
-
-            <div className="text-4xl font-bold hs-text-gradient">
-              {convertToDecimalValue(transactionInfo?.totaSentUnclaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
-            </div>
-
-            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalSentUnclaimedCount || 0} transactions</h6>
-          </aside>
-
-          <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
-            <div className="mb-3 -space-y-1">
-              <h3 className="font-medium">Total Reclaims</h3>
-              <h6 className="faded-text text-sm">Transactions you sent out and recalled</h6>
-            </div>
-
-            <div className="text-4xl font-bold hs-text-gradient">
-              {convertToDecimalValue(transactionInfo?.totalSentReclaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
-            </div>
-
-            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalSentReclaimedCount || 0} transactions</h6>
-          </aside>
+          <DashboardCard
+            isConnecting={isConnecting}
+            header={"Total Reclaims"}
+            tagline={"Transactions you sent out and recalled"}
+            amount={transactionInfo?.totalSentReclaimedAmount}
+            transactionCount={transactionInfo?.totalSentReclaimedCount}
+            symbol={data?.symbol}
+          />
         </section>
 
         <section className="space-y-4">
