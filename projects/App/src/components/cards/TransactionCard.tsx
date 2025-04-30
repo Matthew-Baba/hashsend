@@ -2,10 +2,12 @@ import { TransactionType, TxStatus } from '@/lib/types'
 import React from 'react'
 import PlaceholderCard from '@/components/LoadingCards/PlaceholderCard';
 import { formatDate, shortenAddress } from '@/functions/format';
-import { convertToDecimalValue } from '@/functions/misc-functions';
+import { convertToDecimalValue, copyToClipboard } from '@/functions/misc-functions';
 import { useAccount, useBalance } from 'wagmi';
 import { Button } from '../ui/button';
 import { useWriteToContract } from '@/hooks/useWriteToContract';
+import { ClipboardCopy, Lock } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   const { address } = useAccount();
@@ -22,12 +24,20 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   return (
     <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200" title={transaction?.couponCode}>
       <div className="">
-        <span className={`font-medium`}>{isDebit ? "Sent" : "Received"}  {data?.symbol}</span>
+        <div className="flex items-start gap-x-3">
+          <span className={`font-medium`}>{isDebit ? "Sent" : "Received"}  {data?.symbol}</span>
+          {transaction?.hasPassword && <Lock size={14} />}
+        </div>
 
         <div className="flex items-center gap-3">
           <h6 className="text-sm">{shortenAddress(isDebit ? transaction?.recipient : transaction?.sender)}</h6>
           <span className={`text-xs px-2.5 rounded-full py-0.5 ${statusColor}`}>{status}</span>
         </div>
+      </div>
+
+      <div className="flex items-center gap-2 cursor-pointer" onClick={() => copyToClipboard(transaction?.couponCode).then(() => toast.success("Coupon code successfully copied"))}>
+        <span className="text-sm border-b border-dashed border-shark-900">{transaction?.couponCode}</span>
+        <ClipboardCopy size={18} />
       </div>
 
       <div className="text-right">

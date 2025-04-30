@@ -45,7 +45,7 @@ export const placeholderClaims = {
   recipient: "",
   amount: 0,
   couponCode: "",
-  encryptedPassword: "",
+  hasPassword: false,
   status: 0,
   timestamp: 0,
 }

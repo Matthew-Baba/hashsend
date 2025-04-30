@@ -204,15 +204,7 @@ export const useTransactionDetails = () => {
       } catch (error) {
         console.error("Error fetching pending claims:", error);
         toast.error("Error fetching transaction or incorrect coupon code.")
-        return {
-          sender: "",
-          recipient: "",
-          amount: 0,
-          couponCode: "",
-          encryptedPassword: "",
-          status: 0,
-          timestamp: 0,
-        };
+        return placeholderClaims;
       }
     }, [contract]
   )

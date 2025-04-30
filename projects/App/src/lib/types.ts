@@ -10,7 +10,7 @@ export interface TransactionType {
   recipient: string;
   amount: number;
   couponCode: string;
-  encryptedPassword: string;
+  hasPassword: boolean;
   status: TxStatus;
   timestamp: number;
 }
