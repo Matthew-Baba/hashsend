@@ -1,6 +1,6 @@
 import { TransactionType, TxStatus } from '@/lib/types'
 import React from 'react'
-import PlaceholderCard from './PlaceholderCard';
+import PlaceholderCard from '@/components/LoadingCards/PlaceholderCard';
 import { formatDate, shortenAddress } from '@/functions/format';
 import { convertToDecimalValue } from '@/functions/misc-functions';
 import { useAccount, useBalance } from 'wagmi';

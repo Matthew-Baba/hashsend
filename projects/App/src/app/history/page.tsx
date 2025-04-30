@@ -1,5 +1,5 @@
 "use client"
-import PlaceholderCard from "@/components/cards/PlaceholderCard";
+import PlaceholderCard from "@/components/LoadingCards/PlaceholderCard";
 import AppLayout from "@/components/Layout";
 import AllTransactions from "@/components/pages/AllTransactions";
 import ReceivedTransactions from "@/components/pages/ReceivedTransactions";

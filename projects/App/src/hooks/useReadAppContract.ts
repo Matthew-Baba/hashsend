@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useContract } from "./services/useContract";
 import { TransactionCountType, TransactionType } from "@/lib/types";
-import { placeholderClaims } from "@/lib/utils";
+import { placeholderClaims, placeholderStats } from "@/lib/utils";
 import { toast } from "react-toastify";
 
 export const useUserPendingClaims = () => {
@@ -134,7 +134,7 @@ export function useReceivedTransactionHistory() {
 export function useTransactionCount() {
   const { address } = useAccount();
   const contract = useContract();
-  const [allTransactions, setAllTransactions] = useState<TransactionCountType>();
+  const [allTransactions, setAllTransactions] = useState<TransactionCountType>(placeholderStats);
 
   useEffect(() => {
     const fetchAllTransactions = async () => {
