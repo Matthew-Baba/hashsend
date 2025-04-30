@@ -40,7 +40,7 @@ export default function Home() {
               {convertToDecimalValue(transactionInfo?.totalReceivedClaimedAmount as number) || 0} <span className="text-sm">{data?.symbol}</span>
             </div>
 
-            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalReceivedClaimedCount} transactions</h6>
+            <h6 className="mt-2 font-medium faded-text">{transactionInfo?.totalReceivedClaimedCount || 0} transactions</h6>
           </aside>
 
           <aside className="rounded-lg bg-white border border-gray-100 px-4 py-6">
