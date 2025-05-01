@@ -22,7 +22,7 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   const isDebit = transaction?.sender === address
 
   return (
-    <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200">
+    <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-3 paper rounded-xl py-4 px-6 border border-gray-100 hover:shadow-md duration-200">
       <div className="">
         <div className="flex items-start gap-x-3">
           <span className={`font-medium`}>{isDebit ? "Sent" : "Received"}  {data?.symbol}</span>
@@ -40,12 +40,12 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
         <Copy size={18} />
       </div>
 
-      <div className="text-right">
+      <div className="sm:text-right">
         <h6 className={`font-medium ${isDebit ? "text-red-600" : "text-green-600"}`}>{isDebit ? "-" : "+" }{amount}</h6>
         <h6 className="text-zinc-500 text-sm">{formatDate(Number(BigInt(transaction?.timestamp)) * 1000)}</h6>
 
         {isDebit && status === "Pending" &&
-          <Button className="btn hs-secondary text-xs" onClick={() => recallTransaction(transaction?.couponCode)}>
+          <Button className="btn hs-secondary text-xs sm:px-3 sm:py-1.5 mt-3 sm:mt-0.5" onClick={() => recallTransaction(transaction?.couponCode)}>
             Recall Transfer
           </Button>
         }
