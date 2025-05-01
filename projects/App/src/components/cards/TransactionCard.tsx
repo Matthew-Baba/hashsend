@@ -6,7 +6,7 @@ import { convertToDecimalValue, copyToClipboard } from '@/functions/misc-functio
 import { useAccount, useBalance } from 'wagmi';
 import { Button } from '../ui/button';
 import { useWriteToContract } from '@/hooks/useWriteToContract';
-import { ClipboardCopy, Lock } from 'lucide-react';
+import { Copy, Lock } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
@@ -22,11 +22,11 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
   const isDebit = transaction?.sender === address
 
   return (
-    <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200" title={transaction?.couponCode}>
+    <fieldset className="flex flex-col sm:flex-row sm:items-center sm:justify-between paper rounded-xl py-3 px-6 border border-gray-100 hover:shadow-md duration-200">
       <div className="">
         <div className="flex items-start gap-x-3">
           <span className={`font-medium`}>{isDebit ? "Sent" : "Received"}  {data?.symbol}</span>
-          {transaction?.hasPassword && <Lock size={14} />}
+          {transaction?.hasPassword && <span className="" title="You need password to claim"><Lock size={14} /></span>}
         </div>
 
         <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ const TransactionCard = ({ transaction }: { transaction: TransactionType }) => {
 
       <div className="flex items-center gap-2 cursor-pointer" onClick={() => copyToClipboard(transaction?.couponCode).then(() => toast.success("Coupon code successfully copied"))}>
         <span className="text-sm border-b border-dashed border-shark-900">{transaction?.couponCode}</span>
-        <ClipboardCopy size={18} />
+        <Copy size={18} />
       </div>
 
       <div className="text-right">

@@ -6,6 +6,7 @@ import AppLayout from '@/components/Layout'
 import TransactionDetails from '@/components/pages/TransactionDetails';
 import { Button } from '@/components/ui/button'
 import { useTransactionDetails, useUserPendingClaims } from '@/hooks/useReadAppContract';
+import { useWriteToContract } from '@/hooks/useWriteToContract';
 import { TransactionType } from '@/lib/types';
 import { useState } from 'react';
 import { useAccount } from 'wagmi';
@@ -17,6 +18,7 @@ const Claim = () => {
   const [transactionInfo, setTransactionInfo] = useState<TransactionType>();
   const pendingClaims = useUserPendingClaims();
   const fetchTransactionDetails = useTransactionDetails()
+  const { claimToken } = useWriteToContract()
 
   const fetchTransaction = (identifier: string) => {
     if (identifier.length <= 10) {
@@ -73,6 +75,14 @@ const Claim = () => {
                   <ConnectWalletButton customClass="w-full py-3" />
                 :
                   <Button className={`btn hs-primary w-full py-3`}
+                    onClick={() => {
+                      claimToken(couponCode, password, transactionInfo?.hasPassword as boolean).then(result => {
+                        if (result) {
+                          setCouponCode("")
+                          setPassword("")
+                        }
+                      })
+                    }}
                   >Claim Transferred Token</Button>
                 }
               </fieldset>

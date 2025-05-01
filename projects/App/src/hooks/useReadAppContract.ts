@@ -80,9 +80,9 @@ export function useSentTransactionHistory() {
       if (!address || !contract) return;
 
       try {
-        const transactions = await contract.getAllUserTransactions();
+        const transactions: TransactionType[] = await contract.getAllUserTransactions();
 
-        const sortedTransactions = [...transactions]?.filter((transaction) => transaction[0] === address)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
+        const sortedTransactions = [...transactions]?.filter((transaction) => transaction?.sender === address)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
 
         if(sortedTransactions?.length === 0) {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
@@ -111,9 +111,9 @@ export function useReceivedTransactionHistory() {
       if (!address || !contract) return;
 
       try {
-        const transactions = await contract.getAllUserTransactions();
+        const transactions: TransactionType[] = await contract.getAllUserTransactions();
 
-        const sortedTransactions = [...transactions]?.filter((transaction) => Number(BigInt(transaction[5])) !== 0)?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
+        const sortedTransactions = [...transactions]?.filter((transaction) => (transaction?.sender !== address && Number(BigInt(transaction?.status)) !== 0))?.sort((currentClaim, nextClaim) => Number(BigInt(nextClaim?.timestamp)) - Number(BigInt(currentClaim?.timestamp))).map((transaction) => (transaction))
 
         if(sortedTransactions?.length === 0) {
           setLoadingTransactions(prev => (prev.length > 0 ? [] : prev));
@@ -143,7 +143,7 @@ export function useTransactionCount() {
       try {
         const transactions = await contract.getAllUserTransactions();
 
-        const sentUnclaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) !== 2));
+        const sentUnclaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) === 0));
         const sentReclaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) === 2));
         const sentClaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] === address && Number(BigInt(transaction[5])) === 1));
         const receivedClaimedTransactions = [...transactions]?.filter((transaction) => (transaction[0] !== address && Number(BigInt(transaction[5])) === 1));

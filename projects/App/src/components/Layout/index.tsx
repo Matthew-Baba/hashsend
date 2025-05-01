@@ -71,6 +71,8 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
               </Link>
             ))}
           </section>
+
+          <Footer />
         </div>
 
         <X className="text-white cursor-pointer ml-2 mt-3" size={30} onClick={() => setOpenMenu(false)} />

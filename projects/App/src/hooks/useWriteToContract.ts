@@ -19,30 +19,27 @@ export const useWriteToContract = () => {
 
   const sendToken = useCallback(
     async (amount: string, recipientAddress: string, password: string) => {
-      setIsLoading(true)
       recipientAddress = isAddress(recipientAddress) ? recipientAddress : ZeroAddress
 
       if (!address) {
         toast.error("No wallet connected")
-        setIsLoading(false)
         return false;
       }
 
       if (!amount) {
         toast.error("Amount is required")
-        setIsLoading(false)
         return false;
       }
 
       if (recipientAddress == ZeroAddress && !password) {
         toast.info("Password is required when no recipient address is provided")
-        setIsLoading(false)
         return false;
       }
 
-      const encryptedPassword = keccak256(toUtf8Bytes(password.trim()));
+      const encryptedPassword = password.trim()?.length > 0 ? keccak256(toUtf8Bytes(password.trim())) : "0x0000000000000000000000000000000000000000000000000000000000000000";
       const couponCode = generateCouponCode();
 
+      setIsLoading(true)
 
       try {
         const sendTokenCall = await contract?.sendToken(recipientAddress, couponCode, encryptedPassword, {value: ethers.parseEther(amount)});
@@ -96,9 +93,49 @@ export const useWriteToContract = () => {
     }, [contract, explorerURL, setIsLoading]
   )
 
+  const claimToken = useCallback(
+    async (couponCode: string, password: string, hasPassword: boolean) => {
+
+      if (!couponCode) {
+        toast.error("Coupon Code is mandatory")
+        return false;
+      }
+
+      if (hasPassword && !password) {
+        toast.error("Password is required to claim")
+        return false;
+      }
+
+      setIsLoading(true)
+
+      try {
+        const claimTokenCall = await contract?.claimToken(couponCode, password);
+        const claimTokenCallReceipt = await claimTokenCall?.wait();
+
+        customToast({
+          variant: "success",
+          description: "Transaction successfully executed",
+          action: {url: `${explorerURL}/tx/${claimTokenCallReceipt?.hash || claimTokenCallReceipt?.transactionHash}`, label: "View in explorer"}
+        })
+
+        console.log("Transaction receipt:", claimTokenCallReceipt);
+
+        return true
+      } catch (error) {
+        console.error("Error claiming transaction:", error);
+        const errorMessage = extractErrorMessage(error instanceof Error ? error : new Error("Unknown error"));
+        toast.error(errorMessage)
+        return false
+      } finally {
+        setIsLoading(false)
+      }
+    }, [contract, explorerURL, setIsLoading]
+  )
+
 
   return {
     sendToken,
-    recallTransaction
+    recallTransaction,
+    claimToken
   }
 }
