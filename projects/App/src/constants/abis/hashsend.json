@@ -233,7 +233,7 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "_identifier",
+        "name": "_couponCode",
         "type": "string"
       }
     ],
@@ -335,9 +335,9 @@
         "type": "string"
       },
       {
-        "internalType": "string",
+        "internalType": "bytes32",
         "name": "_encryptedPassword",
-        "type": "string"
+        "type": "bytes32"
       }
     ],
     "name": "sendToken",
@@ -376,9 +376,9 @@
         "type": "string"
       },
       {
-        "internalType": "string",
+        "internalType": "bytes32",
         "name": "encryptedPassword",
-        "type": "string"
+        "type": "bytes32"
       },
       {
         "internalType": "enum HashSend.TxStatus",
