@@ -76,7 +76,7 @@ const Claim = () => {
                 :
                   <Button className={`btn hs-primary w-full py-3`}
                     onClick={() => {
-                      claimToken(couponCode, password, transactionInfo?.hasPassword as boolean).then(result => {
+                      claimToken(couponCode, password, transactionInfo?.hasPassword as boolean, transactionInfo?.sender as string).then(result => {
                         if (result) {
                           setCouponCode("")
                           setPassword("")

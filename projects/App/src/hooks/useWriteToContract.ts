@@ -94,11 +94,16 @@ export const useWriteToContract = () => {
   )
 
   const claimToken = useCallback(
-    async (couponCode: string, password: string, hasPassword: boolean) => {
+    async (couponCode: string, password: string, hasPassword: boolean, sender: string) => {
 
       if (!couponCode) {
         toast.error("Coupon Code is mandatory")
         return false;
+      }
+
+      if (sender === address) {
+        toast.error("Use the recall button to claim your own transfer")
+        return
       }
 
       if (hasPassword && !password) {
