@@ -134,7 +134,7 @@ export const useWriteToContract = () => {
       } finally {
         setIsLoading(false)
       }
-    }, [contract, explorerURL, setIsLoading]
+    }, [address, contract, explorerURL, setIsLoading]
   )
 
 
