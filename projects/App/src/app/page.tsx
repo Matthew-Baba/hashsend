@@ -73,7 +73,7 @@ export default function Home() {
           :
             <>
               <div className="space-y-2">
-                {allTransactions?.slice(0, 6)?.map((transaction, index) => (
+                {allTransactions?.slice(0, 4)?.map((transaction, index) => (
                   <TransactionCard key={index} transaction={transaction} />
                 ))}
               </div>
